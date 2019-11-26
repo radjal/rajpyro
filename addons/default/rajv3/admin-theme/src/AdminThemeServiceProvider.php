@@ -143,8 +143,8 @@ class AdminThemeServiceProvider extends AddonServiceProvider
     public function register()
     {
         //copied from \core\pyrocms\accelerant-theme\src\AccelerantThemeServiceProvider.php
-       // AbstractPaginator::$defaultView       = 'pyrocms.theme.accelerant::pagination/bootstrap-4';
-        //AbstractPaginator::$defaultSimpleView = 'streams::pagination/simple-bootstrap-4';
+//        AbstractPaginator::$defaultView       = 'pyrocms.theme.accelerant::pagination/bootstrap-4';
+//        AbstractPaginator::$defaultSimpleView = 'streams::pagination/simple-bootstrap-4';
     }
 
     /**
