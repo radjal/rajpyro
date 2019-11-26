@@ -1,0 +1,67 @@
+<!-- Meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<title>{{ trans('rajv3.theme.admin::control_panel.title') }}
+    &#8250; {{ trans(template.breadcrumbs.all()|keys|last)|raw }}</title>
+
+{# Favicons #}
+{{ favicons("rajv3.theme.admin::img/favicon.png") }}
+
+{{ asset_add("theme.css", "rajv3.theme.admin::css/fonts.css", ["parse"]) }}
+{{ asset_add("theme.css", "rajv3.theme.admin::css/bootstrap.css") }}
+
+{{ asset_add(
+    "build.css",
+    "rajv3.theme.admin::css/theme.css",
+    [
+        "required",
+        "as:t4t5/sweetalert.css",
+        "as:jshjohnson/Choices.css",
+        "as:rstacruz/nprogress.css",
+    ]
+) }}
+
+{{ asset_add("theme.js", "rajv3.theme.admin::js/vendor/*") }}
+{{ asset_add("theme.js", "rajv3.theme.admin::js/theme/polyfills.js") }}
+{{ asset_add("theme.js", "rajv3.theme.admin::js/libraries/tether.min.js") }}
+
+{{ asset_add(
+    "theme.js",
+    "rajv3.theme.admin::js/libraries/*",
+    [
+        "required",
+        "as:t4t5/sweetalert.js",
+        "as:RubaXa/Sortable.js",
+        "as:jshjohnson/Choices.js",
+        "as:rstacruz/nprogress.js",
+        "as:js-cookie/js-cookie.js",
+        "as:ccampbell/mousetrap.js",
+    ]
+) }}
+
+{# Need to figure out globing to scripts.js - ends up with a /* file #}
+{{ asset_add("scripts.js", "rajv3.theme.admin::js/theme/ajax.js") }}
+{{ asset_add("scripts.js", "rajv3.theme.admin::js/theme/confirm.js") }}
+{{ asset_add("scripts.js", "rajv3.theme.admin::js/theme/initialize.js") }}
+{{ asset_add("scripts.js", "rajv3.theme.admin::js/theme/keyboard.js") }}
+{{ asset_add("scripts.js", "rajv3.theme.admin::js/theme/modal.js") }}
+{{ asset_add("scripts.js", "rajv3.theme.admin::js/theme/prompt.js") }}
+{{ asset_add("scripts.js", "rajv3.theme.admin::js/theme/push.js") }}
+{{ asset_add("scripts.js", "rajv3.theme.admin::js/theme/search.js") }}
+
+<style type="text/css">
+    {{ asset_inline("theme.css") }}
+    {{ asset_inline("build.css") }}
+</style>
+
+{% if locale().isRtl() %}
+    {{ asset_inline("rajv3.theme.admin::css/bootstrap.rtl.css") }}
+    {{ asset_inline("rajv3.theme.admin::css/rtl.css") }}
+{% endif %}
+
+{{ constants() }}
+
+{{ asset_script("theme.js") }}

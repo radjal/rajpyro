@@ -1,0 +1,9 @@
+{
+    "name": "rajv3/spa-theme",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Rajv3\\SpaTheme\\": "src/"
+        }
+    }
+}
