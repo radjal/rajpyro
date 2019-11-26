@@ -8,3 +8,6 @@ composer.lock
 /coverage
 /node_modules
 /bower_components
+nbproject
+/storage
+/.env
