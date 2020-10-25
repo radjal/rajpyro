@@ -1,0 +1,23 @@
+<div>  
+    {{ page('/desan/snippets/mail-template').content|raw }} 
+</div>  
+
+<p>{{ email.__print()|raw }}</p>
+<p>{{ name.__print()|raw }}</p>
+<p>{{ subject.__print()|raw }}</p>
+<p>{{ message.__print()|raw }}</p>
+
+<!-- DESAN VIEW -->
+{% for field in fields %}
+    {%if field is not null and field is not empty %}
+        {# Mind you these are presenters #} 
+        <strong>{{ field.value|raw }}</strong> 
+        <br> 
+    {%endif%}
+{% endfor %}  
+
+{# xtra #}  
+<hr>
+IP: {{ request_ip() }}
+<br>
+Depuis: <a href="{{ url_previous() }}">{{ url_previous() }}</a>

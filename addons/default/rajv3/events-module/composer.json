@@ -1,0 +1,9 @@
+{
+    "name": "rajv3/events-module",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Rajv3\\EventsModule\\": "src/"
+        }
+    }
+}

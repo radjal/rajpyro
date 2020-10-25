@@ -1,0 +1,50 @@
+    
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+     
+    <div class="navbar-brand">
+         
+        <router-link tag="a" to="/" class="navbar-item" exact>
+            {# trans(template.meta_title) #} 
+            {{ page('/desan').title|raw }}
+        </router-link>
+
+      <a role="button" class="navbar-burger has-text-white" aria-label="menu" :aria-expanded="menuOpen"  :class="{ 'is-active': menuOpen }" @click="menuOpen = !menuOpen">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+        
+    </div>
+
+    
+    
+    <div class="navbar-menu" v-bind:class="{ 'is-active': menuOpen }" >
+        
+      <div class="navbar-start">
+        <!-- navbar items -->
+      </div>
+
+      <div class="navbar-end">
+        <!-- navbar items --> 
+
+            {#
+            <router-link tag="a" to="/" class="navbar-link" exact>
+                Accueil
+            </router-link> 
+            #}
+
+              {# desan/pages/  = 82 #} 
+              {% set sitepages = entries('pages', 'pages').where('parent_id', 82).where('enabled', 1).get() %} 
+              {% for pcontent in sitepages %} 
+                {% if pcontent.enabled %}                        
+                <router-link tag="a" to="/service/{{  pcontent.slug }}" class="navbar-link" >
+                    {{ pcontent.title }}
+                </router-link> 
+                {% endif %} 
+              {% endfor %}  
+
+                    
+      </div>
+    </div>
+    
+</nav>

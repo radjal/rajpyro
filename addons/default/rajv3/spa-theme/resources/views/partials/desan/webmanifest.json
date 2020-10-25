@@ -1,0 +1,17 @@
+{
+	"name": "Couverture De San",
+	"short_name": "Artisan Couvreur De San",
+	"description": "DE PERE EN FILS - Plus de 50 années d'expérience",
+	"start_url": "https://desancouverture.fr",
+	"display": "standalone",
+	"orientation": "portrait-primary",
+	"lang": "fr-FR",
+	"background_color": "#0074bc",
+	"theme_color": "#0074bc",
+	"icons": [{
+	  "src": "/files/site_desan_images/logo.png",
+	  "sizes": "512x512",
+	  "type": "image/png",
+      "purpose": "any maskable"
+	} ] 
+  }  

@@ -1,0 +1,18 @@
+
+<h2>Demande via le site {{ page('/desan').title|raw }}</h2> 
+<!-- <h3>{{ subject }}</h3> -->
+
+<!-- OVERRIDE CONTACT PLUGIN VIEW -->
+<!-- DESAN VIEW -->
+{% for field in fields %}
+    {# Mind you these are presenters #}
+    <strong>{{ field.__print()|raw }}</strong> 
+    <br>
+{% endfor %} 
+
+
+{# xtra #} 
+<hr>
+IP: {{ request_ip() }}
+<br>
+Depuis: <a href="{{ url_previous() }}">{{ url_previous() }}</a>

@@ -1,0 +1,60 @@
+{#
+  The following 2 meta tags *must* come first in the <head>
+  to consistently ensure proper document rendering.
+  Any other head element should come *after* these tags.
+#}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<!-- Google -->
+<meta name="google-site-verification" content="9VH3gyeE6ZrGpRPQZXE2cTbkqhu_DCGVA4MM530xRTc" />
+
+<!-- Locale -->
+<meta http-equiv="Content-Language" content="{{ config('app.locale') }}">
+
+<!-- To the Future! -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<!-- Meta Tags -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> 
+<meta name="description" content="{{ page('/yogaenjoie').meta_description|raw }}"/>
+
+{{ template.includes.render('meta')|raw }}
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<title> 
+  	{{ page('/yogaenjoie').title|raw }} 
+</title>
+
+<!-- Favicon -->  
+{{ favicons("theme::img/yogaenjoie/favicon.png") }} 
+
+{# theme color for colored mobile address bar #} 
+<meta name="theme-color" content="#ff9b28" />
+
+{# Important!! #}
+{{ constants() }}
+ 
+
+<!-- External CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css" /> 
+{%if false%}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" /> 
+{%endif%}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Google fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Merienda+One&family=Shadows+Into+Light+Two&display=swap" rel="stylesheet">
+ 
+{{ asset_style('css/yogaenjoie_app.css', ['version']) }}
+
+{{ asset_style('theme::css/gallery-simple.css', ['version']) }}
+{{ asset_style('theme::css/gallery-boxslides.css', ['version']) }}
+{{ asset_style('theme::css/calendar.css', ['version']) }}
+{# asset_style('theme::css/gallery-multiboxslides.css', ['version']) #}
+ 
+
+{{ template.includes.render('head')|raw }}

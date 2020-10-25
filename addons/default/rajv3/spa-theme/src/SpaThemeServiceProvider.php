@@ -39,7 +39,27 @@ class SpaThemeServiceProvider extends AddonServiceProvider
      *
      * @type array|null
      */
-    protected $routes = [];
+    protected $routes = [
+            'test2/' => [
+                'as' => 'anomaly.module.posts::posts.index',
+                'uses' => 'Anomaly\PostsModule\Http\Controller\PostsController@index',
+            ],
+            'test3/{slug}' => [
+                'verb' => 'GET',
+                'as' => 'anomaly.module.pages::pages.view',
+                'uses' => 'Anomaly\PagesModule\Http\Controller\PagesController@view',
+                'where' => [
+                    'slug' => '([A-Za-z])',
+            ], 
+//            'form/{slug}' => [
+//                'verb' => 'GET',
+//                'as' => 'anomaly.module.pages::pages.view',
+//                'uses' => 'Anomaly\PagesModule\Http\Controller\PagesController@view',
+//                'where' => [
+//                    'slug' => '([A-Za-z])',
+//            ], 
+        ], 
+    ];
 
     /**
      * The addon middleware.
@@ -47,7 +67,7 @@ class SpaThemeServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $middleware = [
-        //Rajv3\SpaTheme\Http\Middleware\ExampleMiddleware::class
+        //Rajv3\SpaTheme\Http\Middleware\Cors::class
     ];
 
     /**

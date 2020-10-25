@@ -1,0 +1,36 @@
+<footer id="footer">
+
+    <div class="container has-text-centered">
+        
+                <div class="footer-menu buttons">
+                  <!-- navbar items --> 
+                  {#
+                    {% for link in links('site_desan_foot').get() %}
+                      <router-link tag="a" to="{{  link.path }}" class="button menu-label" exact>
+                          {{ link.title }}
+                      </router-link>   
+                            
+                    {% endfor %} 
+					
+                    {% for link in links('site_desan').get() %}
+                      <router-link tag="a" to="{{  link.path }}" class="navbar-link" >
+                        {{ link.title }}
+                      </router-link> 
+
+                  #}
+
+
+						{#
+							<a href="{{ link.url }}" target="{{ link.target.key }}">{{ link.title }}</a>
+					{% endfor %}
+						#}
+                </div>
+ 
+        <p>
+			&copy;{{ 'now'|date('Y') }} All rights reserved.
+        </p>	
+
+    </div>
+         
+
+</footer>

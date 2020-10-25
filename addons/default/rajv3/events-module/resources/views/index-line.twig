@@ -1,0 +1,39 @@
+
+{% for event in events %}
+    <article class="event">
+
+        <header>
+
+            <h2><a href="/events{{ event.route('view') }}/event/{{ event.id }}">{{ event.name }}</a></h2>
+
+            <div class="meta"> 
+                <time class="date" datetime="{{ event.date|date('Ymd') }}">
+                    {% if false %} 
+                        {# event.date.format(config_get('streams::datetime.date_format')) #} 
+                        {{ event.date|date("m d Y") }}
+                    {% endif %} 
+
+                    Le {{ event.dateFr }}
+                    {{ event.dateHumanized }}
+
+                </time>
+
+                {% if event.category %}
+                    <span class="category">
+                        &mdash; {{ html_link(event.category.route('view'), event.category.name) }}
+                    </span>
+                {% endif %} 
+                
+                <div class="address">
+                    {% if event.address %}
+                       Lieu : {{ event.address|raw }} 
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </header> 
+
+    </article>
+{% endfor %}
+

@@ -1,8 +1,38 @@
 <footer id="footer">
-    <div class="container text-center text-muted">
+    <div class="has-text-centered">
+        
+                <div class="footer-menu">
+                  <!-- navbar items --> 
 
-        {#&copy;{{ 'now'|date('Y') }} {{ setting_value('streams::name', 'Your Site') }}, All rights reserved.#}
-        &copy;{{ 'now'|date('Y') }} Your Company, All rights reserved.
+                      <router-link tag="a" to="/" class="button is-fullwidth menu-label" exact>
+                          Home
+                      </router-link>
+
+                      <router-link tag="a" to="/projects" class="button is-fullwidth menu-label" >
+                          Projects 
+                      </router-link>
+
+
+                      <router-link tag="a" to="/contact" class="button is-fullwidth menu-label" >
+                          Contact
+                      </router-link> 
+
+                              {% if auth_check() %} 
+                                  <hr/>
+
+                                  <router-link tag="a" to="/comments" class="button is-fullwidth menu-label" >
+                                      Comments 
+                                  </router-link>
+
+                                   <a href="/dev" class="button is-fullwidth menu-label">Dev</a>  
+
+                              {% endif %}
+
+                </div>
+        
+        &copy;{{ 'now'|date('Y') }} All rights reserved.
 
     </div>
+         
+
 </footer>

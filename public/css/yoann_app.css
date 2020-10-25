@@ -1,0 +1,162 @@
+body {
+  background-color: #fdfdfd;
+}
+
+.tile-xs {
+  -webkit-box-flex: 0;
+  flex: none;
+  min-height: 214px;
+}
+
+a.is-active.navbar-item.router-link-exact-active {
+  background-color: transparent !important;
+}
+
+.navbar-menu.is-active {
+  background-color: #363636;
+}
+
+a.navbar-link {
+  color: white;
+}
+
+.title-animated {
+  margin: auto;
+  padding: 2rem;
+}
+
+#footer {
+  padding: 5rem;
+  background-color: #f1f1f1;
+}
+
+.contact .button {
+  margin-top: 2rem;
+}
+
+#messages {
+  position: fixed;
+  display: block;
+  width: 100%;
+  z-index: 1111111;
+}
+
+#messages .notification {
+  margin: 0;
+}
+
+.selfie-vector svg {
+  max-width: 540px;
+  max-height: 330px;
+  width: 80%;
+  margin: auto;
+}
+
+.page-content {
+  overflow: hidden;
+}
+
+/*
+.home-page .notification.is-success {
+  background-color: #c75e09;
+  color: #fff;
+} */
+
+.menu-label:first-child {
+  margin-bottom: 0;
+}
+
+#footer .menu-label {
+  width: 100%;
+}
+
+/*homepage*/
+
+.snippet-home-svg {
+  background-color: #ffdd57;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+button.button.is-link.is-outlined {
+  background-color: transparent;
+  border-color: #dc8d32;
+  color: #dc8d32;
+}
+
+.button.is-link.is-outlined:focus,
+.button.is-link.is-outlined:hover {
+  background-color: transparent;
+  border-color: #c75e09;
+  color: #c75e09;
+}
+
+#app .hero-body.snippet-home-top {
+  background-color: #7f3db8e6;
+  color: #fff;
+}
+
+.hero-body.snippet-home-center {
+  background-color: #ffeb9c;
+  /* color: #fff; */
+}
+
+.hero-body.snippet-presentation {
+  background-color: #ffde5d;
+  /* color: #fff; */
+}
+
+.hero-body.notification.publications {
+  background-color: #956abbe6;
+  color: #fff;
+}
+
+#app .hero-body.contact {
+  background-color: #5a5a5a;
+  color: #fff;
+}
+
+.contact button.button.is-link {
+  background-color: #9e78c1;
+}
+
+@media screen and (min-width: 376px) {
+  .tile-xs {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    width: 50%;
+    float: left;
+    min-height: 165px;
+  }
+
+  #footer .menu-label {
+    width: initial;
+  }
+}
+
+@media screen and (min-width: 472px) {
+  .tile-xs {
+    min-height: 237px;
+  }
+
+  .title-animated {
+    max-width: 50%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .tile-xs {
+    min-height: 196px;
+  }
+
+  .contact-form {
+    max-width: 50%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar-menu {
+    background-color: transparent;
+  }
+}
+

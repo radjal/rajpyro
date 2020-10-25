@@ -1,0 +1,46 @@
+    
+<nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
+    
+    <div class="navbar-brand">
+         
+        <router-link tag="a" to="/" class="navbar-item" exact>
+            Yoann Distribution
+        </router-link>
+
+      <a role="button" class="navbar-burger has-text-white" aria-label="menu" :aria-expanded="menuOpen"  :class="{ 'is-active': menuOpen }" @click="menuOpen = !menuOpen">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+        
+    </div>
+
+    
+    
+    <div class="navbar-menu" v-bind:class="{ 'is-active': menuOpen }" >
+        
+      <div class="navbar-start">
+        <!-- navbar items -->
+      </div>
+
+      <div class="navbar-end">
+        <!-- navbar items --> 
+
+            <router-link tag="a" to="/" class="navbar-link" exact>
+                Home
+            </router-link>
+        
+                    {% for link in links('site_yoann').get() %}
+                      <router-link tag="a" to="{{  link.path }}" class="navbar-link" >
+                          {{ link.title }}
+                      </router-link> 
+
+                        <!--
+                            <a href="{{ link.url }}" target="{{ link.target.key }}">{{ link.title }}</a>
+                        -->
+                    {% endfor %}
+                    
+      </div>
+    </div>
+    
+</nav>

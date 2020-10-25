@@ -1,0 +1,9 @@
+{
+    "name": "rajv3/plist-module",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Rajv3\\PlistModule\\": "src/"
+        }
+    }
+}

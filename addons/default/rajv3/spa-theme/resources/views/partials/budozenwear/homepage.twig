@@ -1,0 +1,48 @@
+{% if request_ajax() %} 
+{% endif %} 
+        <style>
+
+            a {
+                color: white; 
+            }
+        
+            p.has-text-centered {
+                width: 100%;
+            }
+            .hero-body.title {
+                margin: 0;
+                display: block;
+                z-index: 2;
+                position: relative;
+                height: 100vh;
+                top: 0;
+                background: url('{{ file('local://budozenwear/logo-splash-paint-colors.png').url|raw }}') center center;
+                background-size: cover; 
+                background-repeat: no-repeat;
+                color: white;
+            }
+            
+        </style>
+		
+<section id="homepage" class="hero home is-fullheight">   
+
+			<div class="hero-body title">
+
+					<p class="has-text-centered">
+					BudoZen Wear
+					</p>
+
+
+					<p class="has-text-centered">
+						<a href="https://shop.budozenwear.com">
+							
+							<em class="fa fa-shopping-cart" aria-hidden="true"></em>
+
+							Shop
+						</a>
+					</p>
+				
+			</div> 
+
+
+</section> 

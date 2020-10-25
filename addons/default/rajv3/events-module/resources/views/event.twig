@@ -1,0 +1,61 @@
+{% extends "theme::layouts/blank" %}
+{% block content %}   
+        <article class="event">
+                <header>
+
+                    <time datetime="{{event.date}}" class="date-as-calendar inline-flex size1_75x">
+                        <span class="weekday">{{event.weekday}}</span>
+                        <span class="day">{{event.day}}</span>
+                        <span class="month">{{event.month}}</span>
+                        <span class="year">{{event.year}}</span>
+                    </time> 
+
+                    <h2>{{ event.name }} </h2>
+
+                    <div class="meta"> 
+
+                        <time class="date" datetime="{{ event.date.iso }}">  
+
+                                Le {{ event.dateFr }}
+                                {{ event.dateHumanized }}
+
+                        </time>
+
+                        {% if event.category %}
+                            <span class="category">
+                                &mdash; {{ html_link(event.category.route('view'), event.category.name) }}
+                            </span>
+                        {% endif %} 
+
+                    </div>
+
+                </header>
+
+                {% if event.description %}
+                    <div class="description">
+                            {{ event.description|raw }} 
+                    </div> 
+                {% endif %}
+
+                {% if event.address %} 
+                <div class="mapouter">
+                    <div class="gmap_canvas">
+                        <iframe width="735" height="451" id="gmap_canvas" src="https://maps.google.com/maps?q={{event.address}}&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    </div>
+                    <style>
+                        .mapouter{position:relative;text-align:right;}
+                        .gmap_canvas {overflow:hidden;background:none!important;width:100%;}
+                        iframe#gmap_canvas {
+                            width: 100%;
+                            height: 30vh;
+                        }
+                    </style>
+                </div>
+                {% endif %}
+
+
+
+            </article> 
+ 
+
+{% endblock %}

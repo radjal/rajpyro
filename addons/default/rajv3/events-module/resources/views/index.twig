@@ -1,0 +1,27 @@
+{% extends "theme::layouts/blank" %}
+{% block content %}   
+                {% for cat in categories %}
+                    <ul class="categories"> 
+                        <li class="container">   
+                            <a href="/events/category/{{cat.id}}">
+                            {{ cat.name }} 
+                            </a>
+                        </li>  
+                    </ul>
+                {% endfor %}
+
+
+                <div id="events">
+                    <div class="container">  
+                        {% if events %}  
+                                {% include "rajv3.module.events::index-line" with {"events": events} %}
+                        {% else %} 
+                            <p class="has-text-centered title">Pas d'évènements prévus!</p> 
+                        {% endif %} 
+
+
+                    </div>
+                </div>  
+ 
+
+{% endblock %}

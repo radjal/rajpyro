@@ -1,0 +1,53 @@
+<footer id="footer">
+    <div class="has-text-centered">
+      <div class="has-text-centered social">
+            <a href="https://www.facebook.com/Yoga-en-joie-Elisabeth-Jouanne-133462936822322/" target="_blank" >
+
+              <svg version="1.1" style="
+                    width: 50px;
+                    margin-bottom: 20px;
+                    fill: white;
+                "
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="-269 366 60.8 60.9" style="enable-background:new -269 366 60.8 60.9;" xml:space="preserve">
+
+              <path class="st0" d="M-242.7,412.8h6.7v-16.3h4.5l0.6-5.6h-5.1v-2.8c0-1.5,0.1-2.3,2.2-2.3h2.8v-5.6h-4.5c-5.4,0-7.3,2.7-7.3,7.3
+                v3.4h-3.4v5.6h3.4v16.3H-242.7z M-238.5,426.5c-16.6,0-30-13.4-30-30s13.4-30,30-30s30,13.4,30,30S-221.9,426.5-238.5,426.5z"/>
+              </svg>
+              </a>
+      </div>
+                <div class="footer-menu buttons">
+                  <!-- navbar items --> 
+
+                    {% for link in links('yogaenjoie_foot').get() %}
+                      <router-link tag="a" to="{{  link.path }}" class="button menu-label" exact>
+                          {{ link.title }}
+                      </router-link>   
+                            
+                    {% endfor %}
+                   
+                              {% if auth_check() %}  
+                                  <hr>
+
+                                  <router-link tag="a" to="/comments" class="button is-fullwidth menu-label" >
+                                      Comments 
+                                  </router-link>
+
+                                   <a href="/dev" class="button is-fullwidth menu-label">Dev</a>  
+
+                                   <a href="#" 
+                                    class="button is-fullwidth menu-label"
+                                    onclick="document.querySelectorAll('p.adminlink').forEach(element => element.classList.toggle('is-hidden'));"
+                                   >Show admin links</a>  
+
+                              {% endif %}
+
+                </div>
+        
+                <p class="footer-copyright">
+                      &copy;{{ 'now'|date('Y') }} All rights reserved.
+                </p>
+    </div>
+         
+
+</footer>

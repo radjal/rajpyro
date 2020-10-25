@@ -1,0 +1,54 @@
+<!doctype html>
+
+{% htmlcompress %}
+<!--[if lt IE 7]>
+<html class="nojs ms lt_ie7" lang="en"><![endif]-->
+<!--[if IE 7]>
+<html class="nojs ms ie7" lang="en"><![endif]-->
+<!--[if IE 8]>
+<html class="nojs ms ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]>
+<html class="nojs ms" lang="en"><![endif]-->
+
+<html lang="{{ config('app.locale') }}">
+
+        {% if auth_check() %} 
+        <!-- default_1 layout for SPA theme
+            var APPLICATION_URL = "{{ url() }}";
+            var APPLICATION_REFERENCE = "{{ env('APPLICATION_REFERENCE') }}";
+            var APPLICATION_DOMAIN = "{{ env('APPLICATION_DOMAIN') }}";
+            var CSRF_TOKEN = "{{ csrf_token() }}";
+            var APP_DEBUG = "{{ config_get('app.debug') }}";
+            var APP_URL = "{{ config_get('app.url') }}";
+            var REQUEST_ROOT = "{{ request_root() }}";
+            var REQUEST_ROOT_PATH = "{{ parse_url(request_root()).path }}";
+            var TIMEZONE = "{{ config_get('app.timezone') }}";
+            var LOCALE = "{{ config_get('app.locale') }}"; 
+            environment "{{ env("APP_ENV") }}"; 
+        -->
+        {% endif %}
+
+<head>
+    {% include "theme::partials/metadata_1" %}
+</head>
+
+<body>
+
+{% include "theme::partials/header_1" %}
+
+<main id="main">
+    <div class="container"> 
+        {% include "theme::partials/messages_1" %}
+
+
+        {% block content %}{% endblock %} 
+
+    </div>
+</main>
+
+{% include "theme::partials/footer_1" %}
+{% include "theme::partials/assets_1" %}
+
+</body>
+</html> 
+{% endhtmlcompress %}

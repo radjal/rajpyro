@@ -1,0 +1,42 @@
+
+{% if auth_check() %}   
+  {%  set style = '    
+                bottom: 50px;
+                left: 50px;
+                    ' %}
+  {%  set class = 'adminlink button is-outlined is-success' %} 
+    <p class="adminlink is-hidden"
+    style="  
+        height: 0;
+        /*display:none;*/
+    "> 
+          {% if id %}  
+                  <a href="/admin/pages/edit/{{ id }}"
+                    class="{{class}}"
+                    style="{{style}}"
+                    target="_blank"
+                    alt="Edit page n° {{ id }}"
+                    >
+                      <em aria-hidden="true" class="fas fa-edit"></em> 
+                    </a>  
+          {% elseif url %}   
+                  <a href="{{ url }}"
+                    class="{{class}}"
+                    style="{{style}}"
+                    target="_blank"
+                    alt="{{ url }} )"
+                    >
+                      <em aria-hidden="true" class="fas fa-edit"></em> 
+                    </a> 
+          {% else %}   
+                  <a href="/admin/pages/edit/{{ page().id }}"
+                    class="{{class}}"
+                    style="{{style}}"
+                    target="_blank"
+                    alt="{{ page().title }}   ( {{ page().id }} )"
+                    >
+                      <em aria-hidden="true" class="fas fa-edit"></em> 
+                    </a> 
+          {% endif %} 
+    </p>
+{% endif %} 

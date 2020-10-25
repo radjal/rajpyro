@@ -1,0 +1,36 @@
+{# Plist Twig template #} 
+{% block content %} 
+    
+    
+    {% set projects = entries('files').where('folder_id', '3').get(["id","name",  
+                                                "folder_id",
+                                                "width",
+                                                "height",
+                                                "str_id", 
+                                                "extension"]) %}
+    {#  
+    {% set projects = folder('projects').files|raw %} 
+    
+    #} 
+    {{ projects|raw }}
+ {# FILES 
+    {% for file in folder('projects').files %}
+        {{ file.name|raw }} 
+        {{ file.name|raw }} 
+        {{ file.path|raw }}<br> 
+    {% endfor %}
+  #}  
+ {# FILES HTML  
+    {% for file in folder('projects').files %}
+        {{ file.image().fit(200, 160)|raw }}
+    {% endfor %}
+ #}  
+{# PAGES 
+    {% set projects = entries('files').get() %}
+    {% for project in projects %}
+        {{ project.name }}
+    {% endfor %} 
+    {{ projects.render()|raw }}
+#}
+    
+{% endblock %}

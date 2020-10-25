@@ -1,0 +1,10 @@
+{% extends "theme::layouts/default_1" %}  
+{% block content %}  
+Subscription
+    {{ form('subscribe', 'subscribe')
+            .skips(['user_id', 'last_sent']) 
+            .successMessage('Done!') 
+            .render()|raw   
+    }}
+
+{% endblock %}

@@ -1,0 +1,187 @@
+{% if request_ajax() %}
+    {# AJAX CHECK no layout if ajax #}
+    {{ content|raw }}
+{% else %}
+<!DOCTYPE html>
+<html lang="{{ config('app.locale') }}" class="has-navbar-fixed-top">
+
+
+    {% if auth_check() %} 
+    <!-- desan layout   
+        SEGMENT 1 :  {{ request_segment(1) }}
+        //domain {{ explode(".", parse_url(request_root()).host)[0] }}
+        var APPLICATION_URL = "{{ url() }}";
+        var APPLICATION_REFERENCE = "{{ env('APPLICATION_REFERENCE') }}";
+        var APPLICATION_DOMAIN = "{{ env('APPLICATION_DOMAIN') }}";
+        var CSRF_TOKEN = "{{ csrf_token() }}";
+        var APP_DEBUG = "{{ config_get('app.debug') }}";
+        var APP_URL = "{{ config_get('app.url') }}";
+        var REQUEST_ROOT = "{{ request_root() }}";
+        var REQUEST_ROOT_PATH = "{{ parse_url(request_root()).path }}";
+        var TIMEZONE = "{{ config_get('app.timezone') }}";
+        var LOCALE = "{{ config_get('app.locale') }}";  
+        environment "{{ env("APP_ENV") }}";  
+    -->
+    {% endif %}
+
+    
+    <head> 
+        {% block metadata %}
+            {% include "theme::partials/desan/metadata" %}
+        {% endblock %}  
+    </head>
+    <body> 
+    
+            {% include "theme::partials/noscript" %}
+                
+        {# FOR SEO #}  
+        <div id="seohome" style="color: #c6c6c6;" class="container hero hero-body">
+            <style>
+                div#seohome {
+                    color: #c6c6c6;
+                }
+                div#fullhome svg {
+                    display:none;
+                } 
+            </style>
+                {{ page('/desan').content|striptags|replace({"\n": "", "\r": "", "\t": ""})|raw }}
+                {% if false %}
+                <div id="fullhome">
+                            {{ page('/desan').content|raw }}
+                </div>
+                {% endif %} 
+        </div>
+
+        <div id="app"> 
+            
+            {% include "theme::partials/desan/header" %}
+     
+            {% include "theme::partials/messages" %}  
+                  
+            <div class="page-content">   
+            
+                    
+                    <router-view :key="$route.fullPath"> 
+                            {% block content %}{% endblock %}   
+                    </router-view>  
+                
+            </div>
+
+
+            {% include "theme::partials/desan/footer" %}
+
+
+        </div> 
+
+        {# EULA #}
+		<div id="cookie-accept" style="display:none;" class="has-text-centered hero"> 
+				
+				<div class="hero-body has-text-centered reload-button">  
+						<button onclick="setcookieeula();return false;" class="button is-primary">  
+							Fermer 
+								<span>
+								<i class="fas fa-window-close"></i>
+								</span>
+						</button> 
+				</div>
+				
+				<div class="hero-body has-text-centered reload-button">   
+				{{ page('/desan/snippets/eula').content|raw }} 
+					
+				</div> 
+					
+		</div>	
+            
+        <script> 
+        
+             {# remove seotxt if has JS #}
+			let elem = document.querySelector('#seohome');
+			if(elem!=null) {
+					elem.parentNode.removeChild(elem);  
+			} 
+            
+            /* GLOBALS */
+			// loading html 
+            window.loadingHtml = '<div class="hero loadinghtml"> <div class="icon is-medium"><i class="fa fa-spinner fa-pulse "></i></div> </div>';
+			
+			/* EULA accept */
+            function setcookieeula() {
+                Cookies.set('desaneula', 'true',  { expires: 9999 });
+                document.querySelector("#cookie-accept").setAttribute("style", "display:none" );
+            }
+            window.addEventListener("load", function(event) {
+              //console.log("window loaded !"); 
+                    /*cookie accept*/
+                    if(!Cookies.get('desaneula')) 
+                    {
+                        document.querySelector("#cookie-accept").setAttribute("style", "display:block" );
+                    }
+            });
+ 
+        </script> 
+
+        
+   
+        {# other js  #}		
+		{% if env("APP_ENV") == 'local' %}  
+                {{ asset_script("theme::js/utilities/gallery-simple.js" ) }} 
+                {{ asset_script("theme::js/utilities/gallery-multiboxslides.js" ) }}
+                {{ asset_script("theme::js/utilities/svg-animation.js" ) }}
+                {{ asset_script("theme::js/utilities/scroll-viewport.js" ) }}
+		{% else %} 
+                {# from webpack #}	
+				{{ asset_add('js/desan_utilities.js', 'theme::js/utilities/svg-animation.js' ) }} 
+				{{ asset_add('js/desan_utilities.js', 'theme::js/utilities/scroll-viewport.js' ) }} 
+                {# not sure that ["min"] is working  #}	
+				{{ asset_script("js/desan_utilities.js", ["min"]) }}
+	        	{{ asset_script("public::js/gallery-all.js" ) }}   
+		{% endif %} 
+
+		{# vue.js  #}		
+		{{ asset_script("public::js/desan_app.js" ) }} 
+		   
+
+	<!-- Fonts -->
+	<script src="https://kit.fontawesome.com/cd0bb37c50.js" crossorigin="anonymous"></script>
+
+	<!-- Cookies https://github.com/js-cookie/js-cookie -->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+
+    <!-- analytics code  -->
+    {# GET var needs to be before anchor delimitator, like this ?notrack#/ #} 
+    {% if not auth_check() and not (env("APP_ENV") == 'local') and not get_isset("notrack") %}  
+
+        {% set gacode = 'G-SF0GH8V472' %}
+        <script> 
+            {# GA OPTOUT SCRIPT #}
+            {# https://webgilde.com/en/analytics-opt-out #}
+            // Set to the same value as the web property used on the site
+            var gaProperty = '{{ gacode }}';
+
+            // Disable tracking if the opt-out cookie exists.
+            var disableStr = 'ga-disable-' + gaProperty;
+            if (document.cookie.indexOf(disableStr + '=true') > -1) {
+                window[disableStr] = true;
+            }
+
+            // Opt-out function
+            function gaOptout() {
+                document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+                window[disableStr] = true;
+            } 
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ gacode }}"></script>
+        <script> 
+            {# GA SCRIPT #}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '{{ gacode }}');
+        </script>
+    {% endif %}
+    </body>
+</html> 
+{% endif %} 

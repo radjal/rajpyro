@@ -1,0 +1,237 @@
+
+                                      
+    /* blue */
+    #pitch, #text1, #devis {
+    background-color: #0074bc;
+    color: white;
+}
+#pitch .title, #text1 .title, #devis .title {
+    color:#fdef7c;
+}
+/* yellow */
+#galerie {
+    background-color: #fdef7c;
+    color: white;
+}
+#pitch .title, #text1 .title, #devis .title, #devis .subtitle, #devis a {
+    color:#fdef7c;
+}
+/*home logo and cta */
+#home {  
+    background: url(/app/default/assets/site_desan_images/4e521cd1a27228bce66c5be526f7507d.jpg);
+    background-size: cover;
+    background-blend-mode: screen;
+    background-color: currentcolor;
+    height: 100vh;
+}
+#home svg {
+    fill: #0074bc;
+}
+#home svg.animated path {
+    stroke: #0074bc;
+}
+#home a {
+    color: #363636;
+}
+#home .home-phone {
+    padding-bottom: 30px;
+}
+.mySlides { 
+    margin-bottom: -10px;
+}
+section#slides {  
+    background: #0074bc;
+} 
+.pictures .hover-shadow {
+    width: 180px;
+}
+.pictures {
+    overflow: auto;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+#slides .dots {
+    display:none;
+} 
+.prev, .next {
+color:#363636;
+}
+.slideshow-container {
+    backdrop-filter: blur(8px) contrast(.8) grayscale(50%);
+}
+#home em {
+    margin: 14px;
+}
+#home .subtitle, 
+#home .title, 
+#home .subtitle a, 
+#home .title a {
+    color: #0074bc !important;
+}
+/*text2*/
+#text2 ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+#text2 .column {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+/*pitch*/
+#pitch blockquote {
+    text-align: justify; 
+    color: #fdef7c;
+} 
+#pitch p {
+    width: 240px;
+    margin: auto;
+    float: none;
+    font-weight: 100;
+}
+#pitch .column {
+    margin: auto;
+}  
+#pitch svg {
+    height: 40px;
+    width: 50px;
+    fill: white; 
+    vertical-align: middle;
+}
+#pitch svg path {
+    fill:white;
+}
+#pitch a {
+    color: white;
+}
+#pitch a:last-child p {
+    margin-bottom: 0;
+}
+
+.column .icons p svg {
+    fill: #363636;
+    margin: 0 32%;
+    transform-box: view-box;
+    /* background-color: #0074bc; */
+    /* padding: 10px; */
+    width: 100px;
+    height: 100px;
+}
+#icons .hero-body {
+    padding-bottom: 0;
+}
+#icons p {
+    width: 310px;
+    margin: auto;
+}
+#icons svg { 
+    width: 80px;
+    height: 80px;
+    fill: #363636;
+    margin: 0 10px;
+}
+/* slide badges from left */
+.icons p svg {  
+    position: relative;
+    left: -1000px;
+} 
+ /* The animation code */
+@keyframes sidebagdges { 
+  0%   { 
+    left: -1000px; 
+  } 
+  100% { 
+    left:0px; 
+  }
+} 
+/* The element to apply the animation to */
+.icons p.in-view-active svg { 
+  animation-name: sidebagdges; 
+  animation-duration: 0.5s;  
+  left:0;
+} 
+/* end slide badges from left */
+@media screen and (max-width: 472px) { 
+    #devis .container {
+    background-size: cover;
+    }
+    #pitch p {
+        /*color:orange;*/ 
+        width: 140px !important;
+        margin: auto; 
+    } 
+}
+
+@media screen and (max-width: 768px)
+{
+    #pitch p { 
+        width: 32%;
+        margin: auto 8%;
+        float: left;
+        white-space: nowrap;
+    } 
+    #pitch svg {
+        margin-right: 5px;
+    }
+    #text2 div.minionmobile { 
+        max-height: 129px;
+        overflow: hidden;
+    }
+
+} 
+
+@media screen and (min-width: 768px) {
+    blockquote.is-size-4 {
+        text-align: left !important;
+        font-size: 1.75rem!important;
+        line-height: 2.3em;
+    }
+    #pitch p {
+        /* color: greenyellow; */  
+        margin-bottom: 14px;
+        /* float: left; */
+        /* width: 33%; */
+        white-space: nowrap;
+    } 
+    #pitch svg {
+        margin-right: 15px;
+    }
+    #icons, #text2 div.minionmobile-button {  
+        display: none;
+    } 
+    section#text1 .title {
+        min-height: 106px; 
+    }
+}
+
+@media screen and (min-width: 1025px) { 
+    section#slides {
+        background: url(/app/default/assets/site_desan_images/4e521cd1a27228bce66c5be526f7507d.jpg);
+        background-size: cover;  
+    }
+    .pictures { 
+        white-space: initial !important; 
+    }
+    #pitch p {
+        /* color: magenta;   */
+        float: left;
+        width: 222px;
+        font-size: 1.1em;
+    } 
+    section#text1 .title {
+        min-height: 76px; 
+    }
+}  
+     
+@media screen and (min-width: 1216px) {  
+    #pitch p { 
+        /* color: gray; */  
+        font-size: 1.4em;
+        width: 268px;
+        margin-bottom: 24px;
+    }  
+    #pitch svg {
+        margin-right: 25px;
+    }
+}  
+                         

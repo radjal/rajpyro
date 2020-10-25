@@ -1,0 +1,288 @@
+{% if request_ajax() %} {# AJAX CHECK #}
+    {{ content|raw }}  
+{% else %}        
+        <!DOCTYPE html>
+<html lang="{{ config('app.locale') }}" class="has-navbar-fixed-top">
+    
+    {# https://pyrocms.com/documentation/streams-platform/1.3/plugin/auth #}
+    {% if auth_check() %} 
+    <!-- spa layout
+        SEGMENT 1 :  {{ request_segment(1) }}
+        var APPLICATION_URL = "{{ url() }}";
+        var APPLICATION_REFERENCE = "{{ env('APPLICATION_REFERENCE') }}";
+        var APPLICATION_DOMAIN = "{{ env('APPLICATION_DOMAIN') }}";
+        var CSRF_TOKEN = "{{ csrf_token() }}";
+        var APP_DEBUG = "{{ config_get('app.debug') }}";
+        var APP_URL = "{{ config_get('app.url') }}";
+        var REQUEST_ROOT = "{{ request_root() }}";
+        var REQUEST_ROOT_PATH = "{{ parse_url(request_root()).path }}";
+        var TIMEZONE = "{{ config_get('app.timezone') }}";
+        var LOCALE = "{{ config_get('app.locale') }}"; 
+        environment "{{ env("APP_ENV") }}"; 
+    -->
+    {% endif %}
+    <head> 
+        {% block metadata %}
+            {% include "theme::partials/metadata" %}
+        {% endblock %} 
+        
+    </head>
+    <body> 
+            {% include "theme::partials/noscript" %}
+			
+        <div id="app"> 
+            
+            {% include "theme::partials/header" %}
+     
+            {% include "theme::partials/messages" %} 
+
+            {#
+            {% block content %}{% endblock %}  
+            #}
+                  
+            <section class="page-content"> 
+                    
+                    <router-view></router-view> 
+                
+            </section>
+            
+            {% include "theme::partials/footer" %}
+            
+                 
+        </div> 
+            
+        <script>
+
+            //globals
+            window.loadingHtml = '<div class="hero"><div class="hero-body"><div class="has-text-centered"><span class="icon is-medium"><i class="fa fa-spinner fa-pulse fa-2x "></i></span></div></div></div>';
+
+        </script>
+
+
+{%if false %}
+{{ asset_script("theme::js/utilities/scroll-viewport.js"  ) }} 
+{%endif%}
+        <script>
+		
+		// https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
+		window.inView = [];
+				function isElementInViewport (id) {
+ 
+					const el = document.getElementById(id);
+					
+					if(el === null) {
+							return false;
+						}
+					
+					var rect = el.getBoundingClientRect();
+
+					return (
+						rect.top >= 0 &&
+						rect.left >= 0 &&
+						rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+						rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+					);
+				}
+				 
+
+				var handler =  () => { 
+					
+					let items = ['data', 'web', 'design']; // container id and XXtitle for
+					let watch = {};
+					
+					items.forEach((name, index, array)  => {
+								//console.log("a[" + index + "] = " + name);
+								watch[name] =  isElementInViewport( 'anim-trigger-'+ name ); //uses id
+								//console.log(watch);
+								
+							});
+							
+					items.forEach((name, index, array)  => {  
+							//console.log(name , watch[name]); 
+								if(watch[name] && typeof( window.inView[name]) === 'undefined') {
+									//console.log(name+'title');
+									window.inView[name] = true;
+									animSvg('#'+name);
+								} else if(!watch[name] &&  window.inView[name] ) {
+									  window.inView[name] = undefined ;
+									  let animated = document.querySelector('#'+name+' svg.animated');
+									  let statik = document.querySelector('#'+name+' svg.anim-was-hidden'); 
+										 if( statik !== null) { statik.setAttribute( 'class', statik.getAttribute('class').replace('anim-was-hidden', 'is-hidden') )};
+										 if( animated !== null) {  animated.setAttribute( 'class', animated.getAttribute('class').replace('is-hidden', '') )};  
+								}
+					}); 
+					
+				};
+
+	
+				let events = ['load','scroll', 'resize'];
+				if (window.addEventListener) {
+					addEventListener('DOMContentLoaded', handler, false);  
+					events.forEach((event, index, array)  => {
+								//console.log("a[" + index + "] = " + event); 
+								addEventListener(event, handler, false);  
+								
+							});
+				} else if (window.attachEvent)  {
+					attachEvent('onDOMContentLoaded', handler); // IE9+ :(
+					events.forEach((event, index, array)  => {
+								//console.log("a[" + index + "] = " + event);  
+								attachEvent('on'+ event, handler); 
+							});
+								
+				}
+        </script>
+
+
+        {# ************************************************************************
+        <script src="https://unpkg.com/browse/jquery@3.3.1/dist/core.js"></script> 
+        {{ asset_add("jquery.js", "theme::js/vendor/jquery.min.js") }}
+        {{ asset_script("jquery.js") }}
+        <script src="/js/vendor/anime.min.js"></script>  
+        <script src="/js/app.js"></script>  
+		<script src="https://unpkg.com/in-view@0.6.1/dist/in-view.min.js"></script> 
+
+        *****************************************************************************#} 
+		
+	{{ asset_script("public::js/app.js" ) }}
+		
+        <script>
+            
+				/**
+				 * based on
+				 * svganimations2.js v1.0.0
+				 * http://www.codrops.com
+				 *
+				 * the svg path animation is based on http://24ways.org/2013/animating-vectors-with-svg/ by Brian Suda (@briansuda)
+				 *
+				 */
+				window.animSvg = (container) => { 
+					/* usage: all svg.animated will be drawn, and rendered invisble at the end of animation
+					 * all svg.is-hidden in page will be have .is-hidden removed at end of animation
+					 *   */
+					'use strict';
+						
+						if(typeof container == 'undefined') container = '';
+						
+						
+						function reset() {
+							var svgsHidden = Array.prototype.slice.call( document.querySelectorAll( container+ ' svg.animated.is-hidden' ) );
+						svgsHidden.forEach( function( el, i ) { 
+							el.setAttribute( 'class', el.getAttribute('class').replace('is-hidden', '') );
+						} );
+							var wasHidden = Array.prototype.slice.call( document.querySelectorAll(container+  ' .anim-was-hidden' ) );
+						wasHidden.forEach( function( el, i ) { 
+							el.setAttribute( 'class', el.getAttribute('class').replace('anim-was-hidden', 'is-hidden') );
+						} );
+						}
+						
+						reset(); // in case not first time
+						
+						
+						
+					window.requestAnimFrame = function(){
+						return (
+							window.requestAnimationFrame       || 
+							window.webkitRequestAnimationFrame || 
+							window.mozRequestAnimationFrame    || 
+							window.oRequestAnimationFrame      || 
+							window.msRequestAnimationFrame     || 
+							function(/* function */ callback){
+								window.setTimeout(callback, 1000 / 60);
+							}
+						);
+					}();
+
+					window.cancelAnimFrame = function(){
+						return (
+							window.cancelAnimationFrame       || 
+							window.webkitCancelAnimationFrame || 
+							window.mozCancelAnimationFrame    || 
+							window.oCancelAnimationFrame      || 
+							window.msCancelAnimationFrame     || 
+							function(id){
+								window.clearTimeout(id);
+							}
+						);
+					}();
+					
+					var svgs = Array.prototype.slice.call( document.querySelectorAll(container+  ' svg.animated' ) ),
+						hidden = Array.prototype.slice.call( document.querySelectorAll( container+ ' .is-hidden' ) ),
+						current_frame = 0,
+						total_frames = 60,
+						path = new Array(),
+						length = new Array(),
+						handle = 0;
+
+					function init() {
+						[].slice.call( document.querySelectorAll(container+  ' .animated path' ) ).forEach( function( el, i ) {
+							path[i] = el;
+							var l = path[i].getTotalLength();
+							length[i] = l;
+							path[i].style.strokeDasharray = l + ' ' + l; 
+							path[i].style.strokeDashoffset = l;
+						} );
+					}
+
+					function draw() {
+						var progress = current_frame/total_frames;
+						if (progress > 1) {
+							window.cancelAnimFrame(handle);
+							showOnPage();
+						} else {
+							current_frame++;
+							for(var j=0; j<path.length;j++){
+								path[j].style.strokeDashoffset = Math.floor(length[j] * (1 - progress));
+							}
+							handle = window.requestAnimFrame(draw);
+						}
+					}
+
+					function showOnPage() {
+						svgs.forEach( function( el, i ) {
+							el.setAttribute( 'class', el.getAttribute('class') + ' is-hidden' );
+						} );
+						hidden.forEach( function( el, i ) { 
+							el.setAttribute( 'class', el.getAttribute('class').replace('is-hidden', 'anim-was-hidden') );
+						} );
+					}
+				  
+						function run() {
+								init();
+								draw();
+						}
+						
+						
+					run();
+
+				}; 
+				
+			//  start
+			window.animSvg('#home');
+
+        </script>
+		 
+
+        <script src="https://kit.fontawesome.com/cd0bb37c50.js" crossorigin="anonymous"></script>
+
+
+    <!-- analytics code  -->
+    {# GET var needs to be before anchor delimitator  /?notrack=1#/ #}
+	 
+    {% if not auth_check() and not (env("APP_ENV") == 'local') and not get_isset("notrack") %}   
+			{% set gacode = 'UA-16184633-3' %}
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id={{ gacode }}"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+
+				gtag('config', '{{ gacode }}');
+			</script>
+	{% endif %}
+        
+    </body>
+</html>
+{% endif %} 
+ 

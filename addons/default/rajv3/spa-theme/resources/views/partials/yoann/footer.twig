@@ -1,0 +1,32 @@
+<footer id="footer">
+    <div class="has-text-centered">
+        
+                <div class="Xfooter-menu buttons">
+                  <!-- navbar items --> 
+
+                    {% for link in links('site_yoann_foot').get() %}
+                      <router-link tag="a" to="{{  link.path }}" class="button menu-label" exact>
+                          {{ link.title }}
+                      </router-link>   
+                            
+                    {% endfor %}
+                   
+                              {% if auth_check() %}  
+                                  <hr>
+
+                                  <router-link tag="a" to="/comments" class="button is-fullwidth menu-label" >
+                                      Comments 
+                                  </router-link>
+
+                                   <a href="/dev" class="button is-fullwidth menu-label">Dev</a>  
+
+                              {% endif %}
+
+                </div>
+        
+        &copy;{{ 'now'|date('Y') }} All rights reserved.
+
+    </div>
+         
+
+</footer>

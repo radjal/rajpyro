@@ -1,0 +1,38 @@
+{% if request_ajax() %} {# AJAX CHECK #}
+    {{ content|raw }}  
+{# if not root #} 
+{% else %}        
+  {% set domain = explode(".", parse_url(request_root()).host)[0] %}       
+
+        {# correct if needed #} 
+        {% if domain == 'www' %}
+                {% set domain = explode(".", parse_url(request_root()).host)[1] %}       
+        {% endif %} 
+  
+
+                {# if domain is... #}
+                {% if domain  == 'yogaenjoie' %}
+                        {% include "theme::layouts/yogaenjoie" %}
+                {% elseif domain  == 'desancouverture' %}
+                        {% include "theme::layouts/sitedesan" %}    
+                {% elseif domain  == 'budozenwear' %}
+                        {% include "theme::layouts/budozenwear" %}    
+
+
+                {# if path base segment is... #}
+                {% elseif request_segment(1) == 'yogaenjoie' %}
+                        {% include "theme::layouts/yogaenjoie" %}
+                {% elseif request_segment(1) == 'siteyoann' %}
+                        {% include "theme::layouts/siteyoann" %}    
+                {% elseif request_segment(1) == 'desan' %}
+                        {% include "theme::layouts/sitedesan" %}    
+                {% elseif request_segment(1) == 'budozenwear' %}
+                        {% include "theme::layouts/budozenwear" %}    
+
+
+                {% else %}         
+                        {# DEFAULT layout #}    
+                        {% include "theme::layouts/spa" %} 
+                {% endif %} 
+{% endif %} 
+ 

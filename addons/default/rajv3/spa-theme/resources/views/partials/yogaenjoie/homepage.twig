@@ -1,0 +1,428 @@
+{% if request_ajax() %}
+	<style type="text/css"> 
+			.column.box {
+				margin: 0 10px 10px;
+			}
+			section.hero.home-3 .is-child.tile {
+				padding: 10px;
+			}  	
+			section.home-3 p.subtitle.has-text-centered {
+				padding-top: 4em;
+				padding-bottom: 0.5em;
+			}
+			#home svg {
+				width: 60%; 
+				height: 60%; 
+			}  
+			svg.home-icon {
+				width: 50%;
+				margin-top: 80px;
+				background-color: transparent;
+				fill: #f5f5f5;
+			}
+			.snippet-home-svg {
+				background-color: #ff9b28;
+			}
+			.hero-body {
+				background: transparent;
+			}
+			section.hero.cours-stage {    
+				background-color: #7f3db8e6; 
+				color: #fff;
+			}
+			.hero .fa.fa-calendar-check-o {
+				color: rebeccapurple;
+			}
+			.snippet-home-slides img {
+				width: 100%;
+			}
+			#slides {
+				background-color: #662f8a;
+			}
+			section.hero.home-1 {
+				background-color: #ff9100;
+				color: white;
+			}
+			.home-1 svg.home-icon {
+				fill: white;
+			}
+			.home-1 strong {
+				color: white;
+			}
+			.home-2 svg.home-icon {
+				fill: white;
+
+			}
+			section.hero.home-2 {
+				color: white;
+				background-color: #ff9e00;
+			}
+			section .home-3 h3.title {
+				margin-top: 5em;
+				margin-bottom: 1em;
+			} 
+			section.hero.home-3 {
+				background-color: #8c4eb5;
+				color: #ffffff;
+			}
+			button.button.is-link.is-outlined {
+				background-color: transparent;
+				border-color: #dc8d32;
+				color: #dc8d32;
+			}
+			.button.is-link.is-outlined:focus,
+			.button.is-link.is-outlined:hover {
+				background-color: transparent;
+				border-color: #c75e09;
+				color: #c75e09;
+			}
+			
+			section.hero.presentation {
+				background-color: #385d66;
+				color: #fff;
+			} 
+			section.hero.publications {
+				background-color: #4e9986;
+				color: #fff;
+			}
+			section.publications p.subtitle a {
+				text-decoration: none !important;
+			}
+			.publications div a img {
+				width: 50%;
+				min-width: 140px;
+			}
+			.publications div.column div:nth-child(1)  { 
+				background-color: transparent;
+				color: white;
+				box-shadow: none;
+			}  
+			/* hide slide dots*/
+			.dot {
+				display:none !important;
+			}
+			/* responsive */
+			@media screen and (min-width: 376px) { 
+				#home svg {
+					width: 80%; 
+					height: 80%;
+					/* min-width: 400px; */
+					/* margin: auto; */
+				}
+			}
+			@media screen and (min-width: 472px) { 
+				#home svg {
+					max-width: 50%;
+					float: left;
+				}
+			}
+			@media screen and (min-width: 769px) {  
+			}
+			@media screen and (min-width: 1024px) { 
+			}
+	</style>
+{% endif %}
+
+<section id="home" class="hero snippet-home-svg is-large">
+	{{ page('/yogaenjoie/snippets/snippet-home-svg').content|raw}} 
+</section>
+{% include "theme::partials/adminlink" with {'id': 38 } %}  
+<p>{# Cours et prochain stage... #} </p>
+<section class="hero cours-stage is-medium scroll-back">
+<div class="hero-head"></div>
+	<div class="hero-body notification snippet-home-top"> 
+		<div class="container"> 
+			{# Snippet Home Top - Cours #} 
+			{% for section in entries('pages', 'pages').where('id', 16).get() %} 
+				{% if section.enabled %}    
+					<p>			
+						{{ section.content|raw }} 
+					</p>			 
+					<div>			
+							{% for images in section.pages_yogaenjoie_images|slice(0,1) %}
+								<a href="{{ request_root() }}/files/yogaenjoie/{{ images.name }}"> 
+									{{ images.image().fit(100, 100).attr('loading', 'lazy')|raw   }}
+									{{ section.title|raw }}
+								</a>    
+							{% endfor %}
+					</div> 
+				{% endif %} 
+			 {% endfor %}
+		</div> 
+	</div>
+	{% include "theme::partials/adminlink" with {'id': 16 } %}  
+</section>
+<section id="slides" class="hero snippet-home-slides is-medium">
+	{{ page('/yogaenjoie/snippets/snippet-home-slides').content|raw}} 
+	{# page('/yogaenjoie/snippets/snippet-home-slides').code|raw#} 
+	{% include "theme::partials/adminlink" with {'id': 60 } %}  
+</section>
+<p>{# section 1 #}</p>
+<section class="hero home-1 is-medium scroll-back"> 
+	<div class="hero-head container has-text-centered in-view"> 
+					
+		{% set svghome1 %}
+			<svg version="1.1" class="home-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="212.598px" height="141.732px" viewBox="45.888 31.634 212.598 141.732" enable-background="new 45.888 31.634 212.598 141.732" xml:space="preserve">
+			<g>
+				<path d="M148.107,122.354c-13.263-11.387-16.743-23.092-11.12-39.414c1.18-3.426,2.846-6.776,4.831-9.807
+					c1.978-3.02,4.638-5.593,7.875-9.39c-7.266-2.595-14.163-5.058-20.938-7.477c-10.683,12.7-10.589,42.702,0.391,62.375
+					c-8.824-6.543-10.594-14.575-12.606-27.732c-0.402-2.63-0.517-3.534-0.833-6.167c-0.5-4.167-1.308-4.512-5.367-4.399
+					c-4.303,0.118-8.612,0.027-13.703,0.027c-0.455,15.04,3.555,28.017,13.152,39.485c-11.422-10.784-25.446-9.016-39.037-9.372
+					c16.518,17.245,36.597,24.931,60.992,22.971c-23.091,7.291-54.963-0.975-73.423-28.524c13.953-0.536,27.308-0.019,41.53,4.003
+					c-5.605-10.464-7.91-20.786-7.69-32.739c6.482-0.215,12.726-0.663,18.958-0.539c3.919,0.077,5.39-1.129,6.122-5.155
+					c1.326-7.293,3.593-14.417,5.726-22.604c9.288,3.794,17.636,6.93,25.722,10.634c3.654,1.674,6.584,1.844,10.225,0.019
+					c6.529-3.273,13.375-5.909,20.021-8.96c3.652-1.678,5.523-0.447,6.59,3.176c1.832,6.217,4.309,12.29,5.586,18.61
+					c0.949,4.696,3.297,5.309,7.305,5.08c5.232-0.299,10.494-0.073,16.111-0.073c1.145,11.988-2.367,22.236-7.846,33.176
+					c14.648-5.107,28.941-4.623,43.146-5.026c0,0.334,0,0.666,0,1c-7.209,8.571-14.797,16.709-24.797,22.17
+					c-15.395,8.404-31.592,10.268-48.576,6.141c23.775,1.666,43.939-6.113,60.658-23.281c-14.604,0.156-29.531-1.26-41.572,10.267
+					c6.426-7.224,10.068-15.627,11.688-24.898c0.713-4.081,0.926-8.25,1.314-12.385c0.061-0.643-0.096-1.872-0.248-1.887
+					c-4.254-0.434-8.529-1.021-12.777-0.867c-0.977,0.036-2.23,2.778-2.477,4.333c-0.457,5.958-0.984,11.789-2.471,17.481
+					c-1.898,7.283-6.986,12.538-14.146,16.787c15.777-18.662,15.357-38.277,6.514-58.789c-1.594-3.696-3.898-4.99-7.855-3.344
+					c-5.178,2.154-10.486,3.991-16.594,6.285c9.791,8.759,13.914,19.054,14.166,31.069c0.254,12.177-4.15,22.027-15.07,29.195
+					C155.068,125.201,151.414,125.096,148.107,122.354L148.107,122.354z M171.074,95.893c-0.463-9.626-4.031-19.214-12.479-26.858
+					c-3.84-3.476-6.772-2.977-10.157,0.391c-8.276,8.232-12.044,18.326-11.442,29.742c0.495,9.378,4.237,17.515,13.21,21.927
+					c1.893,0.931,4.971,1.074,6.831,0.182C166.943,116.509,170.801,107.925,171.074,95.893z"></path>
+				<path d="M242.891,157.105c-62.918-15.291-125.724-15.293-188.344-0.215C97.702,129.202,203.879,130.685,242.891,157.105z"></path>
+			</g>
+			</svg>
+		{% endset %}
+				
+		{{svghome1}}
+		{% if request_ajax() %}
+		<style> 
+		section.hero.home-1 {
+			background: url("data:image/svg+xml;utf8,{{svghome1|replace({'<path': '<path fill="#ff9e00"'})|url_encode}}");
+			background-color: #ff9100;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: contain;
+		} 
+		</style>
+		{% endif %}  
+	</div>
+	<div class="hero-body notification snippet-home-center container "> 
+		{{ page('/yogaenjoie/snippets/snippet-home-center').content|raw}} 
+		{% include "theme::partials/adminlink" with {'id': 39 } %}  
+	</div>     
+</section>
+<p>{# section 2 #}</p>
+<section class="hero home-2 is-medium scroll-back"> 
+	<div class="hero-head container has-text-centered in-view"> 
+		 
+		{% set svghome2 %}
+		<svg version="1.1" class="home-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="212.598px" height="141.732px" viewBox="47.397 209.134 212.598 141.732" enable-background="new 47.397 209.134 212.598 141.732" xml:space="preserve">
+		<g>
+			<path d="M74.44,304.968c7.51-9.019,17.198-13.345,27.076-15.203c-2.398-9.714-4.634-18.997-7.007-28.245
+				c-0.935-3.647,0.27-4.877,3.975-5.851c9.658-2.541,18.739-1.016,27.759,2.395c1.76,0.665,3.471,1.454,5.15,2.163
+				c2.32-7.832,4.176-15.447,6.841-22.768c3.587-9.853,4.664-9.948,13.991-4.612c10.029,5.736,17.376,13.833,21.543,24.229
+				c9.499-5.122,18.589-10.02,27.79-14.981c9.722,13.74,9.811,27.706,5.522,42.659c6.19,0.703,11.869,1.177,17.485,2.031
+				c6.944,1.056,9.315,4.296,8.071,11.296c-3.59,20.221-20.312,32.005-40.297,30.418c-16.904-1.339-31.146-9.315-44.888-18.656
+				c-8.083-5.498-16.366-11.195-25.373-14.726c-12.304-4.822-24.363-3.104-33.95,7.329c-0.392,0.426-0.769,0.877-1.074,1.364
+				c-0.193,0.304-0.243,0.7-0.353,1.056c11.08,14.886,25.559,19.445,43.379,13.741c6.012-1.926,12.079-3.687,18.369-4.895
+				c-9.907,6.763-19.269,14.326-31.544,16.504C99.777,333.256,82.623,320.994,74.44,304.968z M178.353,306.77
+				c15.447-13.71,22.631-29.849,16.762-50.884c-3.31,0.847-5.901,1.503-8.491,2.173c-10.597,2.737-10.597,2.74-11.016,13.336
+				c-0.34,8.562-3.415,16.464-8.323,20.341c2.741-20.534-3.585-36.657-21.313-48.334c-2.922,4.439-5.268,8.428-8.032,12.099
+				c-3.295,4.378-3.401,7.435,1.23,11.482c8.243,7.202,12.278,20.216,10.002,28.091c-2.617-3.957-5.071-8.117-7.963-11.944
+				c-7.807-10.339-18.56-15.452-31.244-16.525c-1.628-0.138-4.838,1.639-4.914,2.699c-0.462,6.483-0.231,13.015-0.231,20.413
+				c23.56-1.298,42.276,10.569,61.905,19.896c9.689,4.605,19.959,7.113,30.849,6.334c11.336-0.809,19.049-6.707,23.66-16.846
+				c0.644-1.417,0.922-4.479,0.434-4.7c-4.715-2.116-9.527-4.301-14.545-5.287c-1.598-0.314-4.183,2.636-5.808,4.53
+				C195.244,300.733,187.833,305.292,178.353,306.77z"></path>
+		</g>
+		</svg>
+		{% endset %}
+		
+		{{svghome2}}
+		{% if request_ajax() %}
+		<style> 
+		section.hero.home-2 {
+			background: url("data:image/svg+xml;utf8,{{svghome2|replace({'<path': '<path fill="#ff9100"'})|url_encode}}");
+			background-color: #ff9e00;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: contain;
+		} 
+		</style>
+		{% endif %}  
+	</div>
+	<div class="hero-body notification snippet-home-center-2 container "> 
+		{{ page('/yogaenjoie/snippets/snippet-home-center-2').content|raw}} 
+	
+		{% include "theme::partials/adminlink" with {'id': 58 } %} 
+	</div>     
+</section>
+<p>{# section 3 #}</p>
+<section class="hero home-3 is-medium scroll-back"> 
+	<div class="hero-head container has-text-centered in-view"> 
+			 
+		{% set svghome3 %}
+			<svg version="1.1" class="home-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="212.599px" height="141.732px" viewBox="0 0 212.599 141.732" enable-background="new 0 0 212.599 141.732" xml:space="preserve">
+			<g>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M107.146,124.237c-35.076-33.924-35.76-72.901-0.219-106.924
+					C141.834,40.624,142.097,94.047,107.146,124.237z"></path>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M32.575,51.587c14.802-0.756,27.933,1.902,40.337,7.94
+					c1.34,0.651,2.722,3.103,2.598,4.597c-1.86,22.578,7.789,40.712,21.681,57.276c0.504,0.602,0.954,1.247,1.464,1.919
+					c-10.109,2.808-33.917-4.734-45.032-14.88C37.154,93.403,33.143,73.562,32.575,51.587z"></path>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M115.398,124.42c4.636-6.611,9.179-12.423,13-18.676
+					c7.694-12.594,11.913-26.22,10.202-41.173c-0.413-3.624,0.702-5.946,4.195-6.674c10.898-2.272,21.819-4.439,32.755-6.518
+					c3.343-0.636,4.89,0.975,4.377,4.419c-1.029,6.914-1.6,13.933-3.141,20.729c-6.185,27.268-24.218,41.794-51.037,46.532
+					C122.488,123.638,119.178,123.932,115.398,124.42z"></path>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M59.348,48.738c1.938-5.992,3.86-11.932,6.145-18.994
+					c5.96,3.212,11.046,5.82,15.949,8.737c0.749,0.446,1.196,2.512,0.848,3.499c-1.578,4.479-3.491,8.842-5.352,13.412
+					C71.271,53.248,65.745,51.157,59.348,48.738z"></path>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M137.14,54.563c-1.99-4.938-3.89-9.655-6.163-15.294
+					c5.66-3.017,11.271-6.006,17.776-9.473c2.237,6.822,4.109,12.533,6.072,18.519C148.51,50.545,142.981,52.499,137.14,54.563z"></path>
+			</g>
+			</svg>
+		{% endset %}
+
+		{{svghome3}}
+		
+		{% if request_ajax() %}
+		<style> 
+		section.hero.home-3 {
+			background: url("data:image/svg+xml;utf8,{{svghome3|replace({'<path': '<path fill="#935bb8"'})|url_encode}}");
+			background-color: #8c4eb5;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: contain;
+		} 
+		</style>
+		{% endif %}  
+	</div>
+	<div class="hero-body notification snippet-home-center-3 container "> 
+		{{ page('/yogaenjoie/snippets/snippet-home-center-3').content|raw}} 
+		{% include "theme::partials/adminlink" with {'id': 59 } %} 
+	</div>     
+</section>
+<p>{# presentation #}</p>
+{% set svgbooks %}
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="960px" height="560px"  viewBox="0 0 960 560" xml:space="preserve">
+	<g> <path fill-rule="evenodd" clip-rule="evenodd" d="M174.418,416.792c13.577-85.013,27.036-169.297,40.583-254.122 	c35.799,4.96,69.592,1.392,102.508-7.85c18.399-5.165,35.73-14.032,53.729-20.726c41.954-15.601,84.176-2.921,110.484,33.263 	c2.756,3.789,4.858,9.077,4.875,13.679c0.287,82.953,0.209,165.906,0.188,248.859c-0.002,1.511-0.246,3.021-0.41,4.911 	c-11.438-10.945-21.576-21.966-33.043-31.367c-32.442-26.597-68.988-32.808-108.505-18.831 	c-25.576,9.048-50.366,20.547-76.305,28.277C238.503,421.832,207.429,423.479,174.418,416.792z"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M493.946,402.755c0-12.394-0.004-24.785,0.001-37.179 	c0.023-63.592,1.078-127.204-0.238-190.769c-1.127-54.266,39.943-90.136,88.424-97.715c29.305-4.581,59.664-4.51,85.643-21.846 	c8.272-5.52,16.396-11.268,25.952-17.85c3.295,30.19,6.78,59.939,9.735,89.741c3.898,39.291,7.529,78.609,10.982,117.941 	c1.881,21.428-7.334,36.758-27.025,46.933c-18.795,9.711-38.568,13.254-59.696,11.739c-26.024-1.866-50.915,1.754-73.656,16.36 	c-26.198,16.831-42.985,40.411-53.197,69.273c-0.841,2.377-1.573,4.791-2.447,7.152c-0.805,2.174-1.731,4.301-2.604,6.448 	C495.193,402.909,494.57,402.832,493.946,402.755z"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M504.998,424.638c9.283-6.329,18.151-13.398,27.918-18.86 	c41.878-23.426,83.124-19.102,124.841,1.983c46.069,23.283,95.365,34.165,147.146,32.692c5.767-0.164,11.508-1.223,19.36-2.101 	c-14.277-86.798-28.39-172.582-42.498-258.335c11.397-4.174,14.545,0.796,16.426,9.759 	c12.244,58.243,24.917,116.395,37.321,174.605c6.778,31.812,13.313,63.675,20.165,96.524c-104.286,0-206.966,0-309.98,0 	c-13.694,30.144-38.445,38.948-68.664,35.279c-20.685-2.512-35.479-13.889-42.675-34.723c-102.669,0-205.353,0-309.997,0 	c3.261-17.531,5.962-34.192,9.495-50.679c15.534-72.515,31.237-144.995,47.085-217.444c1.85-8.458,2.543-19.775,17.205-13.063 	c-14.191,85.622-28.362,171.121-42.699,257.626c25.648,5.139,50.228,2.606,74.676-0.902c41.989-6.029,79.745-24.417,118.583-40.166 	c39.641-16.077,76.752-5.452,109.795,19.662c11.506,8.743,21.28,19.769,32.665,30.527c2.922-4.896,5.646-9.462,8.37-14.028 	C501.357,430.209,503.178,427.425,504.998,424.638z"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M739.246,84.228c4.387,35.564,8.749,70.069,12.879,104.605 	c4.976,41.651,9.518,83.354,14.741,124.972c2.113,16.844,0.312,21.91-15.361,31.745c-27.8,17.442-57.743,15.421-87.759,8.565 	c-33.707-7.697-66.97-10.5-100.212,2.132c-28.406,10.792-49.165,29.66-62.536,56.842c-0.714,1.453-1.793,2.728-3.154,4.76 	c4.844-43.001,52.027-100.774,105.085-98.421c21.742,0.963,43.688,2.252,65.26,0.288c11.891-1.083,24.061-7.169,34.586-13.515 	c24.537-14.798,26.438-23.751,22.821-52.103c-4.989-39.129-7.694-78.548-11.353-117.847c-0.195-2.091-0.032-4.215-0.247-6.302 	C710.987,100.717,710.979,100.718,739.246,84.228z"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M504.998,424.638c-1.82,2.787-3.641,5.571-5.462,8.358 	c-1.073-0.836-3.202-2.124-3.065-2.44c10.228-23.825,26.286-42.492,48.896-55.527c39.45-22.741,79.504-16.712,120.549-4.58 	c38.258,11.31,75.725,7.79,110.257-13.675c2.698-1.678,4.374-7.629,3.952-11.297c-5.283-45.865-11.024-91.68-16.695-137.501 	c-2.012-16.262-4.063-32.52-6.267-48.756c-1.171-8.649,1.688-13.604,11.303-13.598c13.854,90.975,27.665,181.693,41.611,273.296 	c-24.181,6.738-48.234,6.348-71.349,0.674c-29.129-7.147-57.62-17.063-86.102-26.633c-44.639-14.996-87.912-18.244-127.752,12.65 	C517.666,411.199,511.596,418.258,504.998,424.638z"/>
+	</g>
+	</svg> 
+{% endset %} 
+{% if request_ajax() %}
+<style> 
+section.hero.presentation  {
+	background: url("data:image/svg+xml;utf8,{{svgbooks|replace({'<svg ': '<svg style=\"fill:#4a7680\" '})|url_encode}}");
+	background-color: #385d66;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: contain; 
+} 
+</style>
+{% endif %}  
+
+<section class="hero presentation is-medium scroll-back">  
+	<div class="hero-head "></div>		
+	<div class="hero-body notification container">
+	<div class="columns">
+		<div class="column">
+			  <figure class="image is-128x128 in-view" style="
+    margin: auto;">
+				<p>
+					{% for images in page('/yogaenjoie/snippets/snippet-presentation').pages_yogaenjoie_images|slice(0,1) %} 
+							<a href="#/presentation"> 
+								{{ images.image().fit(140, 140).class("is-rounded").attr('loading', 'lazy')|raw }}  
+							</a>    
+					{% endfor %} 
+				</p>
+			  </figure>
+		</div>
+	
+		  <div class="column in-view">
+			<div> 
+				{{ page('/yogaenjoie/snippets/snippet-presentation').content|raw}} 
+				{% include "theme::partials/adminlink" with {'id': 36 } %} 
+			</div> 
+		  </div>
+		</div> 
+	 
+	</div>
+</section>
+<p>{# publications #}</p>
+<section class="hero publications is-large scroll-back"> 
+	<div class="hero-head "></div>		 
+
+		{% if request_ajax() %}
+		<style> 
+		section.hero.publications  {
+			background: url("data:image/svg+xml;utf8,{{svgbooks|replace({'<svg ': '<svg style=\"fill:#5ba592\" '})|url_encode}}");
+			background-color: #4e9986;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: contain;
+		} 
+		</style>
+		{% endif %}  
+
+
+
+
+
+
+	<div class="hero-body notification container">
+		{# loop publications #}  
+		{% set books = entries('pages', 'pages').where('parent_id', 17).get() %} 
+		<div class="has-text-centered columns">			 
+		{% for book in books|slice(1, 4) %} 
+			{%if book.enabled %}      
+							<div class="column">	 
+									<div class="box in-view">
+										{% for images in book.pages_yogaenjoie_images|slice(0,1) %}
+											<div>
+												<a href="#/publications"> 
+													{{ images.image().fit(140, 100).attr('loading', 'lazy')|raw }}  
+												</a>   
+											</div>
+										{% endfor %} 
+										<p class="subtitle">
+											<a href="#/publications">   
+												{{ book.title|raw }}
+											</a> 
+										</p> 
+									</div>
+							</div> 	  
+			{%endif%} 
+		 {% endfor %} 
+		</div> 
+		
+		{# BEWARE of the transformation to HTML of gt symbol below, use greaterthan plugin  #}
+		{%if greaterthan(books|length, 4) %}     
+			<div class="has-text-centered columns">			 
+			{% for book in books|slice(5, books|length) %} 
+				{%if book.enabled %}     
+							<div class="column">
+									<div class="box in-view">	 
+										{% for images in book.pages_yogaenjoie_images|slice(0,1) %}
+											<div>
+												<a href="#/publications"> 
+													{{ images.image().fit(140, 100).attr('loading', 'lazy')|raw }}  
+												</a>   
+											</div>
+										{% endfor %} 
+										<p class="subtitle">
+											<a href="#/publications">   
+												{{ book.title|raw }}
+											</a> 
+										</p> 
+									</div>	 
+							</div> 	  
+				{%endif%} 
+			 {% endfor %} 
+			</div> 	  
+		{%endif%} 
+	</div> 
+</section>
+
+<p>{# contact #}</p> 
+{#
+ <section class="hero contact"> 	 
+	<div class="hero-head "></div>
+	<div class="hero-body notification container"> 
+		{{ page('/yogaenjoie/contact').content|raw}}
+		{{ pageadminlink(29)|raw }}
+ 	</div>  
+</section>
+
+#}

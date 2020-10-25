@@ -1,0 +1,9 @@
+{
+    "name": "rajv3/nextevent-plugin",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Rajv3\\NexteventPlugin\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,156 @@
+<div class="hero">
+	{% set desanmail =  variable_value('desan', 'email')  %}
+		<div class="hero-head"> </div>
+      <div class="container has-text-centered hero-body">
+		{% if auth_check() %}  
+			{% set desanmail =  'r4dj4l@gmail.com'  %}
+			<div class="is-danger notification" onclick="this.classList.add('is-hidden')">In admin mode, mail is sent to : {{desanmail}}</div>
+		{% endif %}
+	    
+		<div class="columns">
+			<div class="column"> 
+				{# filler column to leave space for image #}
+			</div>
+			<div class="column">
+				<h1 class="title in-view in-view-sticky">Demandez un devis gratuit</h1>
+				<p class="has-text-justified-desktop subtitle in-view in-view-sticky">
+					Vous souhaitez obtenir des informations et bénéficier d’un conseil personnalisé ?&nbsp;</p><p>
+					Veuillez compléter le formulaire ci-joint :
+				</p>
+				{# file('local://images/technical-support-help.png').make|raw #}
+			</div>
+			<div class="column">
+				 {# Contact form #}
+				<div class="contact">
+				 {# <a href="https://pyrocms.com/forum/channels/tips/ajax-contact-us-form">https://pyrocms.com/...</a> #}
+					{% set form = form('contact')
+						.fields({ 
+							'name': {
+								'label': 'Nom',
+								'placeholder': 'Votre nom *',
+								'type': 'anomaly.field_type.text',
+								'class': 'input',
+								'required': true
+							}, 
+							'phone': {
+								'label': 'Téléphone',
+								'placeholder': 'Téléphone *',
+								'type': 'anomaly.field_type.text',
+								'class': 'input' ,
+								'required': true
+							},
+							'address': {
+								'label': 'Adresse',
+								'placeholder': 'Adresse',
+								'type': 'anomaly.field_type.text',
+								'class': 'blank',
+							}, 
+							'email': {
+								'label': 'Email',
+								'placeholder': 'Email *',
+								'type': 'anomaly.field_type.email',
+								'class': 'input',
+								'required': true
+							}, 
+							'subject': {
+								'label': 'Sujet',
+								'placeholder': 'Sujet',
+								'type': 'anomaly.field_type.text',
+								'class': 'blank' 
+							}, 
+							'message': {
+								'label': 'Message',
+								'placeholder': 'Veuillez expliquer votre besoin *',
+								'type': 'anomaly.field_type.textarea',
+								'class': 'textarea',
+								'required': true
+							} 
+						})
+							.to(desanmail ) 
+								.bcc('radjal@free.fr')
+								.subject('Demande de devis par site internet')
+								.messageView('rajv3.theme.spa::email/desan/contact') 
+								.successMessage('Le message a été envoyé') 
+								.from('{email}').get 
+						%}
+						{# valid form options
+						form.
+						.cc('radjal@free.fr')
+						.ajax('false') 
+						.redirect('/') 
+						#}
+					{{ form.open({id: 'contactform', name: 'contactform'})|raw }} 
+							
+					<fieldset>
+							
+							<div class="field"> 
+							  <div class="control has-icons-left has-icons-right">
+								{{ form.fields.name.input|raw }}
+								<span class="icon is-small is-left">
+								  <em class="fas fa-user"></em>
+								</span> 
+							  </div>
+							</div>
+							
+							<div class="field"> 
+							  <div class="control has-icons-left has-icons-right">
+								{{ form.fields.email.input|raw }} 
+								<span class="icon is-small is-left">
+								  <em class="fas fa-envelope"></em>
+								</span> 
+							  </div> 
+							</div> 
+
+							<div class="field"> 
+							  <div class="control has-icons-left has-icons-right">
+								{{ form.fields.phone.input|raw }} 
+								<span class="icon is-small is-left">
+								  <em class="fas fa-phone"></em>
+								</span> 
+							  </div> 
+							</div> 
+							 
+								 
+							<div class="field"> 
+							  <div class="control">  
+								  <div class="select">  
+								  <!-- {{ request_segment(3) }} -->
+										  <select name="subject">
+												<option>  
+													Choisissez le service requis
+												</option>
+												{# desan/pages/  = 82 #} 
+												{% set sitepages = entries('pages', 'pages').where('parent_id', 82).where('enabled', 1).get() %} 
+												{% for pcontent in sitepages %} 
+													{% if pcontent.enabled %}  
+														<option {%if request_segment(3)==pcontent.slug %}selected{% endif %}>  
+															{{ pcontent.title }} 
+														</option>
+													{% endif %} 
+												{% endfor %} 
+										  </select>
+								  </div>
+							  </div>
+							</div> 
+							
+							<div class="field"> 
+							  <div class="control">
+								{{ form.fields.message.input|raw }}  
+							  </div>
+							</div> 
+							
+					</fieldset>
+					<div class="field">
+					  <div class="control has-text-centered">
+						<button type="submit" class="button is-link">Envoyer</button>
+					  </div> 
+					</div>  
+				</div>
+			  
+			  
+			</div>
+		</div>
+            
+      </div>
+      <div class="hero-foot"> </div>
+</div>
