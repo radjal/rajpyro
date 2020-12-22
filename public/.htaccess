@@ -31,8 +31,15 @@ SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
     
     # Force ssl
     #RewriteCond %{HTTPS} off
-    #RewriteRule ^ https://domain.com/$1 [L,R=301]
-    
+    #RewriteRule ^ https://desancouverture.fr/$1 [L,R=301]
+
+	# CUSTOMIZED
+	# https://www.hostinger.com/tutorials/ssl/forcing-https
+	# RewriteCond %{HTTP_HOST} ^desancouverture.fr [NC] 
+	# RewriteCond %{HTTPS} off 
+	# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+	
+	
     # Handle front controller
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f

@@ -7,12 +7,12 @@ namespace Composer\Autoload;
 class ComposerStaticInit424fbdf9984053491731ad58a04da5de
 {
     public static $files = array (
+        '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
+        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
@@ -22,10 +22,10 @@ class ComposerStaticInit424fbdf9984053491731ad58a04da5de
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '290dd4ba42f11019134caca05dbefe3f' => __DIR__ . '/..' . '/teamtnt/tntsearch/helper/helpers.php',
-        '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         '2a450510002e446f4b0afbf028c2cfb8' => __DIR__ . '/..' . '/cartalyst/assetic/src/functions.php',
-        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'cd843d38a2398c7f5ec1f1063511c6ce' => __DIR__ . '/..' . '/anomaly/streams-platform/src/Support/_helpers.php',
         'a166263baa49d728edaf4c4bfa4f276c' => __DIR__ . '/../..' . '/core/anomaly/settings-module/src/Support/_helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -90,7 +90,13 @@ class ComposerStaticInit424fbdf9984053491731ad58a04da5de
         array (
             'Robbo\\Presenter\\' => 16,
             'Ramsey\\Uuid\\' => 12,
+            'Rajv3\\SubscribeModule\\' => 22,
             'Rajv3\\SpaTheme\\' => 15,
+            'Rajv3\\SkillsModule\\' => 19,
+            'Rajv3\\PlistModule\\' => 18,
+            'Rajv3\\NexteventPlugin\\' => 22,
+            'Rajv3\\EventsModule\\' => 19,
+            'Rajv3\\CorsheaderPlugin\\' => 23,
             'Rajv3\\AdminTheme\\' => 17,
         ),
         'P' => 
@@ -119,6 +125,11 @@ class ComposerStaticInit424fbdf9984053491731ad58a04da5de
             'Leafo\\ScssPhp\\' => 14,
             'Laravel\\Telescope\\' => 18,
             'Laravel\\Scout\\' => 14,
+        ),
+        'K' => 
+        array (
+            'Knine\\HelpersPlugin\\' => 20,
+            'Knine\\CommentsModule\\' => 21,
         ),
         'J' => 
         array (
@@ -248,9 +259,9 @@ class ComposerStaticInit424fbdf9984053491731ad58a04da5de
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Wikimedia\\Composer\\' => 
         array (
@@ -396,9 +407,33 @@ class ComposerStaticInit424fbdf9984053491731ad58a04da5de
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
         ),
+        'Rajv3\\SubscribeModule\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src',
+        ),
         'Rajv3\\SpaTheme\\' => 
         array (
             0 => __DIR__ . '/../..' . '/addons/default/rajv3/spa-theme/src',
+        ),
+        'Rajv3\\SkillsModule\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src',
+        ),
+        'Rajv3\\PlistModule\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/addons/default/rajv3/plist-module/src',
+        ),
+        'Rajv3\\NexteventPlugin\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/addons/default/rajv3/nextevent-plugin/src',
+        ),
+        'Rajv3\\EventsModule\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src',
+        ),
+        'Rajv3\\CorsheaderPlugin\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/addons/default/rajv3/corsheader-plugin/src',
         ),
         'Rajv3\\AdminTheme\\' => 
         array (
@@ -465,6 +500,14 @@ class ComposerStaticInit424fbdf9984053491731ad58a04da5de
         'Laravel\\Scout\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/scout/src',
+        ),
+        'Knine\\HelpersPlugin\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/addons/default/knine/helpers-plugin/src',
+        ),
+        'Knine\\CommentsModule\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src',
         ),
         'JsonSchema\\' => 
         array (
@@ -5890,6 +5933,28 @@ class ComposerStaticInit424fbdf9984053491731ad58a04da5de
         'JsonSchema\\Uri\\UriResolver' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Uri/UriResolver.php',
         'JsonSchema\\Uri\\UriRetriever' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Uri/UriRetriever.php',
         'JsonSchema\\Validator' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Validator.php',
+        'Knine\\CommentsModule\\Comment\\CommentCollection' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/CommentCollection.php',
+        'Knine\\CommentsModule\\Comment\\CommentCriteria' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/CommentCriteria.php',
+        'Knine\\CommentsModule\\Comment\\CommentModel' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/CommentModel.php',
+        'Knine\\CommentsModule\\Comment\\CommentObserver' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/CommentObserver.php',
+        'Knine\\CommentsModule\\Comment\\CommentPresenter' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/CommentPresenter.php',
+        'Knine\\CommentsModule\\Comment\\CommentRepository' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/CommentRepository.php',
+        'Knine\\CommentsModule\\Comment\\CommentRouter' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/CommentRouter.php',
+        'Knine\\CommentsModule\\Comment\\CommentSeeder' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/CommentSeeder.php',
+        'Knine\\CommentsModule\\Comment\\Contract\\CommentInterface' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/Contract/CommentInterface.php',
+        'Knine\\CommentsModule\\Comment\\Contract\\CommentRepositoryInterface' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/Contract/CommentRepositoryInterface.php',
+        'Knine\\CommentsModule\\Comment\\Form\\CommentFormBuilder' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/Form/CommentFormBuilder.php',
+        'Knine\\CommentsModule\\Comment\\Form\\CommentFrontFormBuilder' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/Form/CommentFrontFormBuilder.php',
+        'Knine\\CommentsModule\\Comment\\Form\\CommentFrontFormHandler' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/Form/CommentFrontFormHandler.php',
+        'Knine\\CommentsModule\\Comment\\Table\\CommentFrontTableBuilder' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/Table/CommentFrontTableBuilder.php',
+        'Knine\\CommentsModule\\Comment\\Table\\CommentTableBuilder' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Comment/Table/CommentTableBuilder.php',
+        'Knine\\CommentsModule\\CommentsModule' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/CommentsModule.php',
+        'Knine\\CommentsModule\\CommentsModulePlugin' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/CommentsModulePlugin.php',
+        'Knine\\CommentsModule\\CommentsModuleServiceProvider' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/CommentsModuleServiceProvider.php',
+        'Knine\\CommentsModule\\Http\\Controller\\Admin\\CommentsController' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Http/Controller/Admin/CommentsController.php',
+        'Knine\\CommentsModule\\Http\\Controller\\CommentsController' => __DIR__ . '/../..' . '/addons/default/knine/comments-module/src/Http/Controller/CommentsController.php',
+        'Knine\\HelpersPlugin\\HelpersPlugin' => __DIR__ . '/../..' . '/addons/default/knine/helpers-plugin/src/HelpersPlugin.php',
+        'Knine\\HelpersPlugin\\HelpersPluginServiceProvider' => __DIR__ . '/../..' . '/addons/default/knine/helpers-plugin/src/HelpersPluginServiceProvider.php',
         'Laravel\\Scout\\Builder' => __DIR__ . '/..' . '/laravel/scout/src/Builder.php',
         'Laravel\\Scout\\Console\\FlushCommand' => __DIR__ . '/..' . '/laravel/scout/src/Console/FlushCommand.php',
         'Laravel\\Scout\\Console\\ImportCommand' => __DIR__ . '/..' . '/laravel/scout/src/Console/ImportCommand.php',
@@ -6852,8 +6917,90 @@ class ComposerStaticInit424fbdf9984053491731ad58a04da5de
         'Pyrocms\\StarterTheme\\StarterThemeServiceProvider' => __DIR__ . '/../..' . '/core/pyrocms/starter-theme/src/StarterThemeServiceProvider.php',
         'Rajv3\\AdminTheme\\AdminTheme' => __DIR__ . '/../..' . '/addons/default/rajv3/admin-theme/src/AdminTheme.php',
         'Rajv3\\AdminTheme\\AdminThemeServiceProvider' => __DIR__ . '/../..' . '/addons/default/rajv3/admin-theme/src/AdminThemeServiceProvider.php',
+        'Rajv3\\CorsheaderPlugin\\CorsheaderPlugin' => __DIR__ . '/../..' . '/addons/default/rajv3/corsheader-plugin/src/CorsheaderPlugin.php',
+        'Rajv3\\CorsheaderPlugin\\CorsheaderPluginServiceProvider' => __DIR__ . '/../..' . '/addons/default/rajv3/corsheader-plugin/src/CorsheaderPluginServiceProvider.php',
+        'Rajv3\\EventsModule\\Booking\\BookingCollection' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/BookingCollection.php',
+        'Rajv3\\EventsModule\\Booking\\BookingCriteria' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/BookingCriteria.php',
+        'Rajv3\\EventsModule\\Booking\\BookingModel' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/BookingModel.php',
+        'Rajv3\\EventsModule\\Booking\\BookingObserver' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/BookingObserver.php',
+        'Rajv3\\EventsModule\\Booking\\BookingPresenter' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/BookingPresenter.php',
+        'Rajv3\\EventsModule\\Booking\\BookingRepository' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/BookingRepository.php',
+        'Rajv3\\EventsModule\\Booking\\BookingRouter' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/BookingRouter.php',
+        'Rajv3\\EventsModule\\Booking\\BookingSeeder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/BookingSeeder.php',
+        'Rajv3\\EventsModule\\Booking\\Contract\\BookingInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/Contract/BookingInterface.php',
+        'Rajv3\\EventsModule\\Booking\\Contract\\BookingRepositoryInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/Contract/BookingRepositoryInterface.php',
+        'Rajv3\\EventsModule\\Booking\\Form\\BookingFormBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/Form/BookingFormBuilder.php',
+        'Rajv3\\EventsModule\\Booking\\Table\\BookingTableBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Booking/Table/BookingTableBuilder.php',
+        'Rajv3\\EventsModule\\Category\\CategoryCollection' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/CategoryCollection.php',
+        'Rajv3\\EventsModule\\Category\\CategoryCriteria' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/CategoryCriteria.php',
+        'Rajv3\\EventsModule\\Category\\CategoryModel' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/CategoryModel.php',
+        'Rajv3\\EventsModule\\Category\\CategoryObserver' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/CategoryObserver.php',
+        'Rajv3\\EventsModule\\Category\\CategoryPresenter' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/CategoryPresenter.php',
+        'Rajv3\\EventsModule\\Category\\CategoryRepository' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/CategoryRepository.php',
+        'Rajv3\\EventsModule\\Category\\CategoryRouter' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/CategoryRouter.php',
+        'Rajv3\\EventsModule\\Category\\CategorySeeder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/CategorySeeder.php',
+        'Rajv3\\EventsModule\\Category\\Contract\\CategoryInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/Contract/CategoryInterface.php',
+        'Rajv3\\EventsModule\\Category\\Contract\\CategoryRepositoryInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/Contract/CategoryRepositoryInterface.php',
+        'Rajv3\\EventsModule\\Category\\Form\\CategoryFormBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/Form/CategoryFormBuilder.php',
+        'Rajv3\\EventsModule\\Category\\Table\\CategoryTableBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Category/Table/CategoryTableBuilder.php',
+        'Rajv3\\EventsModule\\Event\\Contract\\EventInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/Contract/EventInterface.php',
+        'Rajv3\\EventsModule\\Event\\Contract\\EventRepositoryInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/Contract/EventRepositoryInterface.php',
+        'Rajv3\\EventsModule\\Event\\EventCollection' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/EventCollection.php',
+        'Rajv3\\EventsModule\\Event\\EventCriteria' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/EventCriteria.php',
+        'Rajv3\\EventsModule\\Event\\EventModel' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/EventModel.php',
+        'Rajv3\\EventsModule\\Event\\EventObserver' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/EventObserver.php',
+        'Rajv3\\EventsModule\\Event\\EventPresenter' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/EventPresenter.php',
+        'Rajv3\\EventsModule\\Event\\EventRepository' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/EventRepository.php',
+        'Rajv3\\EventsModule\\Event\\EventRouter' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/EventRouter.php',
+        'Rajv3\\EventsModule\\Event\\EventSeeder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/EventSeeder.php',
+        'Rajv3\\EventsModule\\Event\\Form\\EventFormBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/Form/EventFormBuilder.php',
+        'Rajv3\\EventsModule\\Event\\Table\\EventTableBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Event/Table/EventTableBuilder.php',
+        'Rajv3\\EventsModule\\EventsModule' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/EventsModule.php',
+        'Rajv3\\EventsModule\\EventsModulePlugin' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/EventsModulePlugin.php',
+        'Rajv3\\EventsModule\\EventsModuleServiceProvider' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/EventsModuleServiceProvider.php',
+        'Rajv3\\EventsModule\\Http\\Controller\\Admin\\BookingsController' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Http/Controller/Admin/BookingsController.php',
+        'Rajv3\\EventsModule\\Http\\Controller\\Admin\\CategoriesController' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Http/Controller/Admin/CategoriesController.php',
+        'Rajv3\\EventsModule\\Http\\Controller\\Admin\\EventsController' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Http/Controller/Admin/EventsController.php',
+        'Rajv3\\EventsModule\\Http\\Controller\\EventsController' => __DIR__ . '/../..' . '/addons/default/rajv3/events-module/src/Http/Controller/EventsController.php',
+        'Rajv3\\NexteventPlugin\\NexteventPlugin' => __DIR__ . '/../..' . '/addons/default/rajv3/nextevent-plugin/src/NexteventPlugin.php',
+        'Rajv3\\NexteventPlugin\\NexteventPluginServiceProvider' => __DIR__ . '/../..' . '/addons/default/rajv3/nextevent-plugin/src/NexteventPluginServiceProvider.php',
+        'Rajv3\\PlistModule\\Http\\Controller\\PlistController' => __DIR__ . '/../..' . '/addons/default/rajv3/plist-module/src/Http/Controller/PlistController.php',
+        'Rajv3\\PlistModule\\PlistModule' => __DIR__ . '/../..' . '/addons/default/rajv3/plist-module/src/PlistModule.php',
+        'Rajv3\\PlistModule\\PlistModuleServiceProvider' => __DIR__ . '/../..' . '/addons/default/rajv3/plist-module/src/PlistModuleServiceProvider.php',
+        'Rajv3\\SkillsModule\\Http\\Controller\\Admin\\SkillsController' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Http/Controller/Admin/SkillsController.php',
+        'Rajv3\\SkillsModule\\Skill\\Contract\\SkillInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/Contract/SkillInterface.php',
+        'Rajv3\\SkillsModule\\Skill\\Contract\\SkillRepositoryInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/Contract/SkillRepositoryInterface.php',
+        'Rajv3\\SkillsModule\\Skill\\Form\\SkillFormBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/Form/SkillFormBuilder.php',
+        'Rajv3\\SkillsModule\\Skill\\SkillCollection' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/SkillCollection.php',
+        'Rajv3\\SkillsModule\\Skill\\SkillCriteria' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/SkillCriteria.php',
+        'Rajv3\\SkillsModule\\Skill\\SkillModel' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/SkillModel.php',
+        'Rajv3\\SkillsModule\\Skill\\SkillObserver' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/SkillObserver.php',
+        'Rajv3\\SkillsModule\\Skill\\SkillPresenter' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/SkillPresenter.php',
+        'Rajv3\\SkillsModule\\Skill\\SkillRepository' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/SkillRepository.php',
+        'Rajv3\\SkillsModule\\Skill\\SkillRouter' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/SkillRouter.php',
+        'Rajv3\\SkillsModule\\Skill\\SkillSeeder' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/SkillSeeder.php',
+        'Rajv3\\SkillsModule\\Skill\\Table\\SkillTableBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/Skill/Table/SkillTableBuilder.php',
+        'Rajv3\\SkillsModule\\SkillsModule' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/SkillsModule.php',
+        'Rajv3\\SkillsModule\\SkillsModuleServiceProvider' => __DIR__ . '/../..' . '/addons/default/rajv3/skills-module/src/SkillsModuleServiceProvider.php',
+        'Rajv3\\SpaTheme\\Http\\Middleware\\Cors' => __DIR__ . '/../..' . '/addons/default/rajv3/spa-theme/src/Http/Middleware/Cors.php',
         'Rajv3\\SpaTheme\\SpaTheme' => __DIR__ . '/../..' . '/addons/default/rajv3/spa-theme/src/SpaTheme.php',
         'Rajv3\\SpaTheme\\SpaThemeServiceProvider' => __DIR__ . '/../..' . '/addons/default/rajv3/spa-theme/src/SpaThemeServiceProvider.php',
+        'Rajv3\\SubscribeModule\\Http\\Controller\\Admin\\SubscribeController' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Http/Controller/Admin/SubscribeController.php',
+        'Rajv3\\SubscribeModule\\Http\\Controller\\SubscribeController' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Http/Controller/SubscribeController.php',
+        'Rajv3\\SubscribeModule\\SubscribeModule' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/SubscribeModule.php',
+        'Rajv3\\SubscribeModule\\SubscribeModuleServiceProvider' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/SubscribeModuleServiceProvider.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\Contract\\SubscribeInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/Contract/SubscribeInterface.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\Contract\\SubscribeRepositoryInterface' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/Contract/SubscribeRepositoryInterface.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\Form\\SubscribeFormBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/Form/SubscribeFormBuilder.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\SubscribeCollection' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/SubscribeCollection.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\SubscribeCriteria' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/SubscribeCriteria.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\SubscribeModel' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/SubscribeModel.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\SubscribeObserver' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/SubscribeObserver.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\SubscribePresenter' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/SubscribePresenter.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\SubscribeRepository' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/SubscribeRepository.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\SubscribeRouter' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/SubscribeRouter.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\SubscribeSeeder' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/SubscribeSeeder.php',
+        'Rajv3\\SubscribeModule\\Subscribe\\Table\\SubscribeTableBuilder' => __DIR__ . '/../..' . '/addons/default/rajv3/subscribe-module/src/Subscribe/Table/SubscribeTableBuilder.php',
         'Ramsey\\Uuid\\BinaryUtils' => __DIR__ . '/..' . '/ramsey/uuid/src/BinaryUtils.php',
         'Ramsey\\Uuid\\Builder\\DefaultUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DefaultUuidBuilder.php',
         'Ramsey\\Uuid\\Builder\\DegradedUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DegradedUuidBuilder.php',

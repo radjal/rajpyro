@@ -4,12 +4,34 @@
 {% else %}
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}" class="has-navbar-fixed-top">
+{# ******* SPA setting below ******* #}  
+        {% set spa = false %} {# true / false #}  
+{# ******************************************************************************************
+        remember to change exact url option for desan homepage in pages module 
+****************************************************************************************** #}   
+    {% if not spa %} 
+        {# ********************* build desan path, uses page N°123 ***************** #}  
+        {% set path = request_path()|split('/')|slice(1)|join('/') %}  
+        {% if path|split('/')[0] == 'travaux' %} {# alternative segment #}
+                {# ************** NOT USED FOR NOW, needs improving ************** #} 
+                {% set path = "desan/service/" ~ path|split('/')|slice(1)|join('/') %} 
+                {{dump(path)}}
+        {% elseif path == 'yogaenjoie' %} {# keep out other sites #} 
+           {{dd('yogaenjoie')}}
+        {% elseif path|length > 1 %} {# path cannot have trailing slash #}
+            {% set path = "desan/" ~ path %}  
+        {% else %} 
+            {% set path = "desan" %}  
+        {% endif %}  
 
-
+    {% endif %}
     {% if auth_check() %} 
     <!-- desan layout   
+        SPA mode :  {{ spa }} -- will show nothing if false
+        page include path :  {{ path }}  
+        full request path : {{request_path()}}
         SEGMENT 1 :  {{ request_segment(1) }}
-        //domain {{ explode(".", parse_url(request_root()).host)[0] }}
+        // domain {{ explode(".", parse_url(request_root()).host)[0] }}
         var APPLICATION_URL = "{{ url() }}";
         var APPLICATION_REFERENCE = "{{ env('APPLICATION_REFERENCE') }}";
         var APPLICATION_DOMAIN = "{{ env('APPLICATION_DOMAIN') }}";
@@ -27,53 +49,92 @@
     
     <head> 
         {% block metadata %}
-            {% include "theme::partials/desan/metadata" %}
+            {% include "theme::partials/desan/metadata" with [spa, path] %}
         {% endblock %}  
     </head>
     <body> 
     
-            {% include "theme::partials/noscript" %}
-                
-        {# FOR SEO #}  
-        <div id="seohome" style="color: #c6c6c6;" class="container hero hero-body">
-            <style>
-                div#seohome {
-                    color: #c6c6c6;
-                }
-                div#fullhome svg {
-                    display:none;
-                } 
-            </style>
-                {{ page('/desan').content|striptags|replace({"\n": "", "\r": "", "\t": ""})|raw }}
-                {% if false %}
-                <div id="fullhome">
-                            {{ page('/desan').content|raw }}
-                </div>
-                {% endif %} 
-        </div>
+        {% include "theme::partials/noscript" %}
+     
+        {% if spa %}   
+            {# **************************** FOR SEO **********************************
+            this div is removed by JS before Vue.js is initiated 
+            ************************************************************************ #}  
+            <div id="seohome" style="color: #c6c6c6;" class="container hero hero-body"> 
+                {# page('/desan').content|raw #} 
+                {% include "theme::partials/desan/seo" %}  
+            </div>
+        {% endif %}  
 
+        {# ************ Vue.js container ************* #}  
         <div id="app"> 
             
-            {% include "theme::partials/desan/header" %}
+            {% include "theme::partials/desan/header" with [spa, path] %}
      
-            {% include "theme::partials/messages" %}  
+            {% include "theme::partials/messages" with [spa, path] %}  
                   
-            <div class="page-content">   
-            
+            <div class="page-content">      
                     
-                    <router-view :key="$route.fullPath"> 
-                            {% block content %}{% endblock %}   
-                    </router-view>  
+                    {# ************ SPA Vue.js version ************* #}  
+                    {% if spa %}
+                        <router-view :key="$route.fullPath"> {# Vue.js router #}   
+                    {% endif %} 
+                    
+                    {% if not spa %}  
+                                {% if not request_segment(1) %} 
+                                    {# ********* if no path, is home ********* #} 
+                                    <div id="homepage"> 
+                                        {% include "theme::partials/desan/homepage" with [spa, path] %}
+                                        {% include "theme::partials/adminlink" %}
+                                    </div>
+                                {% else %}  
+                                    {# requested page HTML #}  
+                                    {% set pcontent = page(path).content %}   
+                                        {{pcontent|raw}}  
+                                    {# display keywords if any #} 
+                                    {% set keywords = page(path).keywords %}  
+                                    {% if keywords.value %} 
+                                        <section id="keywords" class="section">
+                                            <span>Mots clés :</span>
+                                            {% for kword in keywords.value %}  
+                                                {{kword}}{% if not loop.last %}, {% endif %}
+                                            {% endfor %} 
+                                        </section>  
+                                        {# *************************************************************
+                                        <section id="travaux" class="section columns"> 
+
+                                            {% include "theme::partials/desan/seo" with [spa, path] %}
+                                        </section>
+                                        ************************************************************* #}
+                                    {% endif %}  
+
+                                    <!-- code -->  
+                                    {{ page().code|raw }} {# entreprise page N°123 #} 
+                                    {{ page(path).code|raw }}  {# active page code #} 
+                                     
+
+                                {% endif %} 
+
+                                <!-- page content --> 
+                                {# block content is actually not used since content is pulled from homepage in non-SPA mode #}   
+                                {# uncomment below for debugging
+                                {% block content %}{% endblock %}  #} {# cannot declare content block more than once #}  
+                                
+                    {% endif %} 
+
+                    {% if spa %}
+                        </router-view>   {# Vue.js router #}
+                    {% endif %}   
                 
             </div>
 
 
-            {% include "theme::partials/desan/footer" %}
+            {% include "theme::partials/desan/footer" with [spa, path] %}
 
 
         </div> 
 
-        {# EULA #}
+        {# ********************************* EULA ********************************* #}
 		<div id="cookie-accept" style="display:none;" class="has-text-centered hero"> 
 				
 				<div class="hero-body has-text-centered reload-button">  
@@ -86,70 +147,129 @@
 				</div>
 				
 				<div class="hero-body has-text-centered reload-button">   
-				{{ page('/desan/snippets/eula').content|raw }} 
-					
+				    {{ page('/desan/snippets/eula').content|raw }}  
 				</div> 
 					
 		</div>	
             
         <script> 
-        
-             {# remove seotxt if has JS #}
-			let elem = document.querySelector('#seohome');
-			if(elem!=null) {
-					elem.parentNode.removeChild(elem);  
-			} 
             
             /* GLOBALS */
 			// loading html 
-            window.loadingHtml = '<div class="hero loadinghtml"> <div class="icon is-medium"><i class="fa fa-spinner fa-pulse "></i></div> </div>';
+            window.loadingHtml = '<div class="hero loadinghtml" style="height:50vh"> <div class="icon is-medium"><i class="fa fa-spinner fa-pulse "></i></div> </div>';
 			
 			/* EULA accept */
             function setcookieeula() {
                 Cookies.set('desaneula', 'true',  { expires: 9999 });
                 document.querySelector("#cookie-accept").setAttribute("style", "display:none" );
             }
-            window.addEventListener("load", function(event) {
-              //console.log("window loaded !"); 
+            window.addEventListener("load", function(event) { 
                     /*cookie accept*/
                     if(!Cookies.get('desaneula')) 
                     {
                         document.querySelector("#cookie-accept").setAttribute("style", "display:block" );
                     }
             });
+
+            {# ************ SPA or not ************ #}
+            {% if spa %} 
+                {# ************ is SPA, remove SEO div if has JS ************ #}
+                let elem = document.querySelector('#seohome');
+                if(elem!=null) {
+                        elem.parentNode.removeChild(elem);  
+                } 
+            {% else %}  
+                {# ************ not SPA ************ #}
+ 
+                window.addEventListener("load", function(event) {  
+    			  //  if(document.getElementsByClassName("mySlides")) showSlides(1); //for home
+                    if(typeof(window.animSvg) == 'function') window.animSvg('#home')
+                    document.querySelector('nav.navbar div.navbar-brand a').classList.remove('is-hidden');
+                });
+
+                function toggleMenu(ob) {
+                    event.preventDefault();  
+                    let open = ob.classList.contains('is-active') ? true : false ;
+                    if(open) {
+                        ob.classList.remove('is-active');
+                        document.querySelector('nav.navbar div.navbar-menu').classList.remove('is-active');
+                    } else {
+                        ob.classList.add('is-active');
+                        document.querySelector('nav.navbar div.navbar-menu').classList.add('is-active');
+                    }
+                }
+ 
+                {# ************ on unload ************ #}
+                window.onbeforeunload = function(){ 
+                    document.querySelector('div.page-content').innerHTML = window.loadingHtml;
+                    document.querySelector('nav.navbar div.navbar-menu').classList.remove('is-active'); 
+                    window.scroll(0,0);
+                    //return 'Yes/no';
+                };
+
+                
+                {# ************ convert any SPA links ************ #}
+                let links = document.querySelectorAll('a');
+                links.forEach((a)=>{
+                        // console.log(a.href);
+                        // console.log(a.href.startsWith('http')); 
+                        if(a.href !='') {
+                            a.href = a.href.replace("/#/", "/entreprise/"); 
+                        }
+                });
+                {# ************ inject notrack GET var into links if notrack ************ #}
+                if(window.location.search.toLowerCase().substr(1).search('notrack') > -1) {
+                    console.log('notrack');
+                    links.forEach((a)=>{ 
+                            if(a.href !='') {
+                                a.href = a.href + '?notrack'; 
+                            }
+                    });
+                }
+                
+
+            {% endif %} 
  
         </script> 
 
         
    
-        {# other js  #}		
+        {# ************************ other JS assets ************************ #}		
 		{% if env("APP_ENV") == 'local' %}  
                 {{ asset_script("theme::js/utilities/gallery-simple.js" ) }} 
                 {{ asset_script("theme::js/utilities/gallery-multiboxslides.js" ) }}
                 {{ asset_script("theme::js/utilities/svg-animation.js" ) }}
                 {{ asset_script("theme::js/utilities/scroll-viewport.js" ) }}
+                {{ asset_script("theme::js/utilities/helper-animate.js" ) }}
 		{% else %} 
-                {# from webpack #}	
-				{{ asset_add('js/desan_utilities.js', 'theme::js/utilities/svg-animation.js' ) }} 
-				{{ asset_add('js/desan_utilities.js', 'theme::js/utilities/scroll-viewport.js' ) }} 
-                {# not sure that ["min"] is working  #}	
-				{{ asset_script("js/desan_utilities.js", ["min"]) }}
-	        	{{ asset_script("public::js/gallery-all.js" ) }}   
+                {# common scripts #}
+                {# will create files in public/ only if it does not exist #}	
+				{{ asset_add('js/desan_utilities.js', 'theme::js/utilities/svg-animation.js', ['min'] ) }} 
+				{{ asset_add('js/desan_utilities.js', 'theme::js/utilities/scroll-viewport.js', ['min'] ) }} 
+				{{ asset_add('js/desan_utilities.js', 'theme::js/utilities/helper-animate.js', ['min'] ) }}  
+                {# image related scripts #}
+				{{ asset_add('js/gallery_all.js', 'theme::js/utilities/gallery-simple.js', ['min'] ) }} 
+				{{ asset_add('js/gallery_all.js', 'theme::js/utilities/gallery-multiboxslides.js', ['min'] ) }}  
+                 
+                {# output scripts #}	
+				{{ asset_script("js/desan_utilities.js") }}
+	        	{{ asset_script("js/gallery_all.js") }}   
 		{% endif %} 
 
-		{# vue.js  #}		
-		{{ asset_script("public::js/desan_app.js" ) }} 
+        {% if spa %} 
+            {# vue.js  #}		
+            {{ asset_script("public::js/desan_app.js" ) }}  
+        {% endif %} 
 		   
 
 	<!-- Fonts -->
 	<script src="https://kit.fontawesome.com/cd0bb37c50.js" crossorigin="anonymous"></script>
 
 	<!-- Cookies https://github.com/js-cookie/js-cookie -->
-	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script> 
 
     <!-- analytics code  -->
-    {# GET var needs to be before anchor delimitator, like this ?notrack#/ #} 
+    {# to omit tracking use notrack GET var, it needs to be before the anchor delimitator, like this ?notrack#/ #} 
     {% if not auth_check() and not (env("APP_ENV") == 'local') and not get_isset("notrack") %}  
 
         {% set gacode = 'G-SF0GH8V472' %}

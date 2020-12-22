@@ -1,3 +1,9 @@
 {
-    "/js/app.js": "/js/app.js"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/yogaenjoie_app.css": "/css/yogaenjoie_app.css",
+    "/css/desan_app.css": "/css/desan_app.css",
+    "/js/desan_app.js": "/js/desan_app.js",
+    "/js/yogaenjoie_app.js": "/js/yogaenjoie_app.js",
+    "/app/desan.webmanifest": "/app/desan.webmanifest"
 }

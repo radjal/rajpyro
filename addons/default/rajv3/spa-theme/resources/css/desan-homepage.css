@@ -23,6 +23,7 @@
     background-blend-mode: screen;
     background-color: currentcolor;
     height: 100vh;
+    padding-top: 15vh;
 }
 #home svg {
     fill: #0074bc;
@@ -83,7 +84,7 @@ color:#363636;
     text-align: justify; 
     color: #fdef7c;
 } 
-#pitch p {
+#pitch p, #pitch h2 {
     width: 240px;
     margin: auto;
     float: none;
@@ -155,7 +156,7 @@ color:#363636;
     #devis .container {
     background-size: cover;
     }
-    #pitch p {
+    #pitch p, #pitch h2 {
         /*color:orange;*/ 
         width: 140px !important;
         margin: auto; 
@@ -164,7 +165,7 @@ color:#363636;
 
 @media screen and (max-width: 768px)
 {
-    #pitch p { 
+    #pitch p, #pitch h2 { 
         width: 32%;
         margin: auto 8%;
         float: left;
@@ -186,7 +187,7 @@ color:#363636;
         font-size: 1.75rem!important;
         line-height: 2.3em;
     }
-    #pitch p {
+    #pitch p, #pitch h2 {
         /* color: greenyellow; */  
         margin-bottom: 14px;
         /* float: left; */
@@ -212,7 +213,7 @@ color:#363636;
     .pictures { 
         white-space: initial !important; 
     }
-    #pitch p {
+    #pitch p, #pitch h2 {
         /* color: magenta;   */
         float: left;
         width: 222px;
@@ -224,7 +225,7 @@ color:#363636;
 }  
      
 @media screen and (min-width: 1216px) {  
-    #pitch p { 
+    #pitch p, #pitch h2 { 
         /* color: gray; */  
         font-size: 1.4em;
         width: 268px;

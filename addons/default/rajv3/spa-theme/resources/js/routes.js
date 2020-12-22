@@ -25,6 +25,10 @@ let routes = [
         path: '/contact',
         component: require('./views/contact').default
     },
+    {
+        path: '*:id',
+        component: require('./views/ajaxpage').default //caches pages
+    } 
     
 //    {
 //        path: '/subscribe',

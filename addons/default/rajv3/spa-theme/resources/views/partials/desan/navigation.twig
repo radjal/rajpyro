@@ -1,14 +1,25 @@
-    
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
      
     <div class="navbar-brand">
-         
-        <router-link tag="a" to="/" class="navbar-item" exact>
-            {# trans(template.meta_title) #} 
-            {{ page('/desan').title|raw }}
-        </router-link>
+        
+        {% if spa %}   
+          <router-link tag="a" to="/" class="navbar-item animate__animated animate__bounceIn" exact>
+              {# trans(template.meta_title) #} 
+              {{ page('/desan').title|raw }}
+          </router-link>
+        {% else %} 
+          <a href="/" class="navbar-item animate__animated animate__bounceIn is-hidden" >
+              {# trans(template.meta_title) #} 
+              {{ page('/desan').title|raw }}
+          </a>   
+        {% endif %}   
 
-      <a role="button" class="navbar-burger has-text-white" aria-label="menu" :aria-expanded="menuOpen"  :class="{ 'is-active': menuOpen }" @click="menuOpen = !menuOpen">
+        {% if spa %}   
+          <a role="button" class="navbar-burger has-text-white" aria-label="menu" :aria-expanded="menuOpen"  :class="{ 'is-active': menuOpen }" @click="menuOpen = !menuOpen">
+        {% else %} 
+          <a role="button" class="navbar-burger has-text-white" aria-label="menu" onclick="toggleMenu(this)">
+        {% endif %}   
+
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -18,7 +29,11 @@
 
     
     
+  {% if spa %}   
     <div class="navbar-menu" v-bind:class="{ 'is-active': menuOpen }" >
+  {% else %} 
+    <div class="navbar-menu" >
+  {% endif %}  
         
       <div class="navbar-start">
         <!-- navbar items -->
@@ -32,17 +47,26 @@
                 Accueil
             </router-link> 
             #}
+            {# set current page based on URI segment so as to highlight active page #}
+            {% set current = request_path()|split('/')|last %} 
 
               {# desan/pages/  = 82 #} 
               {% set sitepages = entries('pages', 'pages').where('parent_id', 82).where('enabled', 1).get() %} 
               {% for pcontent in sitepages %} 
-                {% if pcontent.enabled %}                        
-                <router-link tag="a" to="/service/{{  pcontent.slug }}" class="navbar-link" >
-                    {{ pcontent.title }}
-                </router-link> 
-                {% endif %} 
-              {% endfor %}  
+                {% if pcontent.enabled %}     
+                                    
+                      {% if spa %}          
+                        <router-link tag="a" to="/service/{{  pcontent.slug }}" class="navbar-link" >
+                            {{ pcontent.title }}
+                        </router-link> 
+                      {% else %}
+                        <a href="/artisan/service/{{  pcontent.slug }}" class="navbar-link {% if current == pcontent.slug %}active{% endif %}" >
+                            {{ pcontent.title }}
+                        </a> 
+                      {% endif %}    
 
+                {% endif %} 
+              {% endfor %}   
                     
       </div>
     </div>

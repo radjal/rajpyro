@@ -1,13 +1,19 @@
+<nav class="navbar is-fixed-top is-dark animate__animated animate__backInDown" role="navigation" aria-label="main navigation">
     
-<nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
-    
+
+
     <div class="navbar-brand">
          
         <router-link tag="a" to="/" class="navbar-item" exact>
-            RADJA
+            RADJA  
         </router-link>
 
-      <a role="button" class="navbar-burger has-text-white" aria-label="menu" :aria-expanded="menuOpen"  :class="{ 'is-active': menuOpen }" @click="menuOpen = !menuOpen">
+      <a role="button" 
+      class="navbar-burger has-text-white" 
+      aria-label="menu" 
+      :aria-expanded="menuOpen"  
+      :class="{ 'is-active': menuOpen }" 
+      @click="menu3d = menuOpen = !menuOpen; if(!menu3d){ delayedScrollUnlock() }">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -22,33 +28,45 @@
       <div class="navbar-start">
         <!-- navbar items -->
       </div>
-
+ 
       <div class="navbar-end">
 
+
+            {# set var link appear effecct #}
+            {# @todo improve this, maybe a twig function to increment ? #}
+            {% set d = 0.05 %} {# duration #}
+            {% set l = 0.05 %} {# interval #}
+
+
+
             <!-- navbar items --> 
-            <router-link tag="a" to="/" class="navbar-link" exact>
+            <router-link tag="a" to="/" class="navbar-link" exact style="--i: {{d}}s"> 
                 Home
             </router-link>
 
-            <router-link tag="a" to="/projects" class="navbar-link" >
+            {# increase duration #}{% set d = d + l %}
+            <router-link tag="a" to="/projects" class="navbar-link" style="--i: {{d}}s">
                 Projects 
             </router-link> 
 
-            <router-link tag="a" to="/contact" class="navbar-link" >
+            {# increase duration #}{% set d = d + l %}
+            <router-link tag="a" to="/contact" class="navbar-link" style="--i: {{d}}s">
                 Contact
             </router-link> 
 
-                    {% if auth_check() %} 
-                        <hr/>
-                       <!-- js router link -->
-                        <router-link tag="a" to="/comments" class="navbar-link" >
-                            Comments 
-                        </router-link>
+            {% if auth_check() %} 
+                <hr/>
+                {# increase duration #}{% set d = d + l %}
+                <!-- js router link -->
+                <router-link tag="a" to="/comments" class="navbar-link" style="--i: {{d}}s">
+                    Comments 
+                </router-link>
 
-                       <!-- classic HTML link -->
-                         <a href="/dev" class="navbar-link">Dev</a>  
+                {# increase duration #}{% set d = d + l %}
+                <!-- classic HTML link -->
+                  <a href="/dev" class="navbar-link" style="--i: {{d}}s">Dev</a>  
 
-                    {% endif %}
+            {% endif %}
 
       </div>
     </div>

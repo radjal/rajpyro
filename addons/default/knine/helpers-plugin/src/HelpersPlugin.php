@@ -20,19 +20,23 @@ class HelpersPlugin extends Plugin
             }),
                     
                 // greater than for twig usage, returns '>'
+                // {{ gt() }}
             new \Twig_SimpleFunction('gt', function() {
                 return ">";
             }), 
                 // less than for twig usage, returns '<'
+                // {{ lt() }}
             new \Twig_SimpleFunction('lt', function() {
                 return "<";
             }), 
                     
-                // is greater than for twig usage, returns true/false accordingly
+                // is greater than for twig usage, returns true/false accordingly 
+                // {{ greaterthan( 2, 1) }} returns X
             new \Twig_SimpleFunction('greaterthan', function($num, $limit) {
                 return $num > $limit;
             }), 
                 // is less than for twig usage, returns true/false accordingly
+                // {{ lessthan( 2, 1) }} returns X
             new \Twig_SimpleFunction('lessthan', function($num, $limit) {
                 return $num < $limit;
             }), 

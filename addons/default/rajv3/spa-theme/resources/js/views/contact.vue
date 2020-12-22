@@ -1,6 +1,11 @@
 <template>
     <div class="container"> 
 	
+
+			<h1 class="title has-text-centered">
+				Contact
+			</h1>
+ 
 			<div class="title-animated">
 				
 					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -67,53 +72,27 @@
   
 			 </div>  
 	
-					 <div class="contact-form" v-html="contact"> 
-					 </div>  
+			<div class="contact-form" v-html="contact"> 
+			</div>  
 							
 					 
     </div>
 </template>
 
 <script>
-    import moment from 'moment'; 
-	
-//    import Status from '../models/Status';
-	 
+  	//import moment from 'moment';  //IS THIS NEEDED? 
+	//import Status from '../models/Status'; 
 	//import AddToStream from '../components/AddToStream.vue';
 
-    import Form from '../utilities/Form';
-	
-	//import ParticleEffectButton from "vue-particle-effect-buttons"
- 
+    import Form from '../utilities/Form'; 
 
-    export default {
-		 
-		//components: {AddToStream}, 
-
-	
-	//template: `<div>hello</div>`,
+    export default { 
+		//components: {AddToStream},  
+		//template: `<div>hello</div>`,
 		data(){
 			return { 
 				contact: window.loadingHtml, 
-				form: new Form({ message: '', name: '', email: '', _token:'' }) 
-				/* btnOps: {
-						type: "triangle",
-						easing: "easeOutQuart",
-						size: 6,
-						particlesAmountCoefficient: 4,
-						oscillationCoefficient: 2,
-						color: function () {
-						  return Math.random() < 0.5 ? "#000000" : "#ffffff";
-						},
-						onComplete: () => {
-						  console.log("anim complete");
-						},
-						onBegin: () => {
-						  console.log("anim begin");
-						},
-						visible: true,
-						animating: false
-					  }, */
+				form: new Form({ message: '', name: '', email: '', _token:'' })  
 			} 	
 		}, 
 		
@@ -143,6 +122,9 @@
 										document.querySelector('button[type=submit]').classList.remove('is-loading') ;
 										this.$data.form.message = document.getElementById("message").value;
 								}); 
+							typeof(window.animSvg) !== 'function' ? false : window.animSvg() ;
+							document.querySelector('.title-animated').style.visibility ='visible';
+							return ;
 								 
 					});	//HTML		
             ///console.log(this.contact );
@@ -154,14 +136,14 @@
                // } 		
 				load(data){
 					//console.log(this);
-					this.contact = data; 
-					//this.$data.form._token = document.querySelector('[name=_token]').value; 
+					this.contact = data;  
+					delayedScrollUnlock();
+					this.$root.menu3d=false; 
 				},
 				onSubmit() {
 					console.log('onSubmit !'); 
 					console.log(this); 
-					
-					// document.querySelector('button[type=submit]').disabled = true;
+					 
 					document.querySelector('button[type=submit]').classList.add('is-loading') ;
 					 
 					this.form.name 	  = this.$data.form.originalData.name = document.querySelector('#name').value;
@@ -171,14 +153,11 @@
 					 
 					
 					this.form.originalData = this.$data.form.originalData;
-					//this.form.data();
-					
+					//this.form.data(); 
 					/*
 					//this.$data.form.errors = {}   ; 
 					*/
-				//	this.form.data({ message: this.$data.form.message, name: this.$data.form.name, email: this.$data.form.email, _token:this.$data.form._token })
-					
-					
+					//	this.form.data({ message: this.$data.form.message, name: this.$data.form.name, email: this.$data.form.email, _token:this.$data.form._token }) 
 					//console.log(this);
 						
 						this.form
@@ -200,7 +179,7 @@
 												document.getElementById('messages').appendChild(msgBox);
 												
 												for (let field in response.errors) {
-													this[field] = response.errors[field];//saving var
+													this[field] = response.errors[field]; //saving var
 													let err = document.createElement('div'); 
 														err.classList.add('is-danger', 'notification') ;
 														err.innerHTML = `${this[field]}`;  //error message  
@@ -218,9 +197,23 @@
 		
         mounted() {
             console.log('contact mounted.');
+			//return typeof(window.animSvg) !== 'function' ? false : window.animSvg() ;
+			 
+        } ,
+		
+        updated() {
+            console.log('contact updated.');
 			return typeof(window.animSvg) !== 'function' ? false : window.animSvg() ;
 			 
         } 
     }
 //console.log('runs first') // this    runs only once before the export!
 </script>
+
+<style>
+
+.contact .button {
+  margin-top: 2rem;
+}
+
+</style>

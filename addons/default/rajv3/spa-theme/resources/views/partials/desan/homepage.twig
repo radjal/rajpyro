@@ -1,21 +1,24 @@
-{# TODO LIST 
-	finish adding loading="lazy" to <img> tags
-#} 
-{% if request_ajax() %}
+{% if request_ajax() or not spa %}
 			<style type="text/css">
 							{{ asset_inline("theme::css/desan-homepage.css") }} 
 			</style>
-	{% if false %}
-	{{ asset_script('theme::css/desan-homepage.css') }}
-	{% endif %}
+
+		{% if false %}
+			{{ asset_script('theme::css/desan-homepage.css') }}
+		{% endif %}
+
 {% endif %}
 
 <section id="slides" class="hero home-slides"> 
+
+		{# ********* build desan home path ********* #}  
+		{% set path = "desan" %}  
+
 			{# images full screen width slides #}
 			<div class="slideshow-container"> 
 			
 					{# svg animation in slide #}
-					  <div id="home" class="mySlides fade"> 
+					  <div id="home" class="mySlides fade" style="display: block;"> 
 								<div class="numbertext"> </div> 
 								<div class="animated-svg has-text-centered in-view in-view-sticky" onclick="animSvg('#home');"> 
 										{# animated svg + static svg IMPROVE for 1st 2 #}
@@ -67,28 +70,35 @@
 </section>
 <section id="pitch" class="hero is-medium">
 		
-      <div class="hero-body container ">
+	<div class="hero-body container ">
+		<h1 class="title has-text-centered">
+		Artisan Couvreur
+		</h1>
 	   
 		<div class="columns">
 			<div class="column">
-					 <blockquote class="is-size-4">
-						Nous avons à cœur de vous offrir un travail de qualité, à la hauteur de vos attentes et de vos besoins
+					 <blockquote class="is-size-4 in-view in-view-sticky"
+									data-in-view-class="animate__backInRight"
+									data-in-view-target="#pitch .columns div.column:nth-child(2) ">
+						Un travail de qualité, à la hauteur de vos attentes et de vos besoins
 					</blockquote>    
 			</div>
 		
-			  <div class="column "> 
+			  <div class="column animate__animated"> 
 					{# desan/pages/  = 82 #} 
 					{% set sitepages = entries('pages', 'pages').where('parent_id', 82).where('enabled', 1).get() %} 
 					{% for pcontent in sitepages %} 
 						{% if pcontent.enabled %}  
-							<a href="#/service/{{ pcontent.slug }}">
-								<p class="in-view in-view-sticky">
+							{#<a href="#/service/{{ pcontent.slug }}">#}
+							<a href="/artisan/service/{{ pcontent.slug }}" title="{% if pcontent.meta_title %}{{ pcontent.meta_title }}{% else %}{{ pcontent.title }}{% endif %}">
+								{# <p class="in-view in-view-sticky animate__animated" data-in-view-class="animate__backInUp"> #}
+								<h2 class="in-view in-view-sticky">
 									{# if not loop.first %}-{% endif #} 
 									{% for svg in pcontent.svg|slice(0,1) %} 
 												{{ svg.svg_code|raw }} 
 									{% endfor %} 
 									{{ pcontent.title }} 
-								</p> 
+								</h2> 
 							</a>
 						{% endif %} 
 					{% endfor %} 
@@ -110,7 +120,14 @@
 								<img src="{{ request_root() }}/files/images/placeholder-image.png" height="100" width="134">			
 						{%else%}  
 								{% for images in page.pages_fichiers_desan %} 
-									<img src="{{ images.image().fit(200,200).url()|raw }}" onclick="launchSlides({{ loop.index }}, '{{slidesId}}')" class="hover-shadow" title="{{ images.name }}" loading="lazy">
+									<img 
+									src="{{ images.image().fit(200,200).url()|raw }}" 
+									onclick="launchSlides({{ loop.index }}, '{{slidesId}}')" 
+									class="hover-shadow" 
+									title="{{ images.title }}"
+									alt="{{ images.alt_text }}" 
+									data-name="{{ images.name }}"
+									loading="lazy">
 								{% endfor %} 
 						{%endif%}  
 		</div>
@@ -145,37 +162,37 @@
       
 </section>
 <section id="text1" class="hero is-medium "> 
-      <div class="hero-body container ">
-	   
-		<div class="columns">
-			<div class="column"> 
-			<p class="title in-view in-view-sticky">
-				Dépannage fuite de toit
-			</p>
-			<p class="has-text-justified">
-				En cas d'urgence de fuite de toit, tuile ou ardoise cassée, tuile ou ardoise manquante, contactez-nous pour un devis et une intervention de dépannage rapide réalisée par un artisan qualifié.
-			</p>
-			</div>
-			<div class="column"> 
-			<p class="title in-view in-view-sticky">
-				Rénovation et Entretien de Couverture
-			</p>
-			<p class="has-text-justified">
-				Spécialiste des toitures tuiles, ardoises et zinc, notre équipe de professionnels qualifiés intervient pour tous travaux en neuf et rénovation. Vous pouvez faire appel à nos services pour l'entretien et le démoussage de tuiles et ardoises.
-			</p>
-			</div>
-		
-			  <div class="column">
-			<p class="title in-view in-view-sticky">
-				Toiture et Gouttières Zinc
-			</p>
-			<p class="has-text-justified">
-				Couvreur zingueur à votre écoute, nous effectuons la rénovation et le remplacement toiture zinc mais également de gouttières zinc et pvc. Contez-nous également pour la pose de Vélux et traitement de Charpente.
-			</p>
-			  </div>
-		</div>	    
-      </div>
+    <div class="hero-body container ">
+     
+      <div class="columns">
+          <div class="column"> 
+          <h3 class="title in-view in-view-sticky">
+              Dépannage fuite de toit
+          </h3> 
+          <p class="has-text-justified">
+              En cas d'<b>urgence de fuite de toit</b>, tuile ou ardoise cassée, tuile ou ardoise manquante, <b>contactez-nous pour un devis</b> et une intervention de <b>dépannage rapide réalisée par un artisan qualifié</b>.
+          </p>
+          </div>
+          <div class="column"> 
+          <h3 class="title in-view in-view-sticky">
+              Rénovation, Entretien de Couverture
+          </h3>
+          <p class="has-text-justified">
+              Spécialiste des <b>toitures tuiles, ardoises et zinc</b>, notre équipe de <b>professionnels qualifiés</b> intervient pour <b>tous travaux en neuf et rénovation</b>. Vous pouvez faire appel à nos services pour l'entretien et le <b>démoussage</b> de tuiles et ardoises.
+          </p>
+          </div>
       
+            <div class="column">
+          <h3 class="title in-view in-view-sticky">
+              Toiture et Gouttières Zinc
+          </h3>
+          <p class="has-text-justified">
+            <b>Couvreur zingueur</b> à votre écoute, nous effectuons la rénovation et le remplacement toiture zinc mais également de gouttières <b>zinc et pvc</b>. Contez-nous également pour la pose de <b>Vélux</b> et traitement de <b>Charpente</b>.
+          </p>
+            </div>
+      </div>	    
+    </div>
+    
 </section>
 <section id="icons" class="hero is-medium"> 
       <div class="hero-body is-hidden-desktop ">
@@ -189,47 +206,52 @@
 </section>
 <section id="text2" class="hero is-medium">
 		
-      <div class="hero-body container ">
-	   
-		<div class="columns minionmobile content">
-		
-			<div class="column is-hidden-mobile "> 
-				  <div class="icons">
-					{# page('/desan/snippets/icons').content|raw #}
-						<p class="in-view in-view-sticky">
-						{% for svg in page('/desan/snippets/icons').svg %} 
-									{{ svg.svg_code|raw }}  
-						{% endfor %}  	
-						</p>
-				  </div> 	  
-			</div> 
-			<div class="column"> 
-				<ul>
-				  <li>Expertise des charpentes et structures.</li>
-				  <li>Couvertures et zingueries dans le cadre de la rénovation.</li>
-				  <li>Travaux de couverture : film de sous toiture / couverture ardoise / couverture tuile / couverture métallique.</li>
-				  <li>Travaux de finition extérieure : plafond d’avant toit, bande de rive.</li>
-				  <li>Travaux de zinguerie et d’évacuation d’eaux pluviales : zinc / cuivre / acier.</li>
-				</ul>
-			</div>
-			<div class="column">  
-				<ul>
-				  <li>Travaux d’isolation thermique et acoustique : laine et fibre de bois / mousse polyuréthane / laine minérale / isolant mince etc..</li>
-				  <li>Travaux de bardage, terrasse, balcon : sapin / mélèze / douglas / cèdre (red cedar) / panneau composite / bois exotique.</li>
-				  <li>Aménagement de toiture : cheminée maçonnée ou métallique / fenêtre de toit type velux ou verrières / puit de lumière / arrêt de neige / sortie d’extraction diverse.&nbsp;</li>
-				</ul> 
-			</div> 
-		</div>	    
-		<div class="has-text-centered minionmobile-button">
-			<div class="fadestrip" ></div>
-			<button type="button" class="button" onclick="document.querySelector('.minionmobile').classList.remove('minionmobile'); document.querySelector('.minionmobile-button').classList.add('is-hidden')">+</button>
-		</div>
-      </div>
+    <div class="hero-body container ">
+     
+      <div class="columns minionmobile content">
       
+          <div class="column is-hidden-mobile "> 
+                <div class="icons">
+                  {# page('/desan/snippets/icons').content|raw #}
+                      <p class="in-view in-view-sticky">
+                      {% for svg in page('/desan/snippets/icons').svg %} 
+                                  {{ svg.svg_code|raw }}  
+                      {% endfor %}  	
+                      </p>
+                </div> 	  
+          </div> 
+          <div class="column"> 
+              <ul>
+                <li>Expertise des <b>charpentes</b> et structures.</li>
+                <li><b>Couvertures</b> et zingueries dans le cadre de la <b>rénovation</b>.</li>
+                <li><b>Travaux de couverture</b> : film de sous toiture / couverture ardoise / couverture tuile / couverture métallique.</li>
+                <li>Travaux de <b>finition extérieure</b> : plafond d’avant toit, bande de rive.</li>
+                <li>Travaux de <b>zinguerie</b> et d’évacuation d’eaux pluviales : zinc / cuivre / acier.</li>
+              </ul>
+          </div>
+          <div class="column">  
+              <ul>
+                <li>Travaux d’<b>isolation</b> thermique et acoustique : laine et fibre de bois / mousse polyuréthane / laine minérale / isolant mince etc..</li>
+                <li>Travaux de <b>bardage</b>, terrasse, balcon : sapin / mélèze / douglas / cèdre (red cedar) / panneau composite / bois exotique.</li>
+                <li>Aménagement de <b>toiture</b> : <b>cheminée</b> maçonnée ou métallique / fenêtre de toit type <b>velux ou verrières</b> / puit de lumière / arrêt de neige / sortie d’extraction diverse.&nbsp;</li>
+              </ul> 
+          </div> 
+      </div>	    
+      <div class="has-text-centered minionmobile-button">
+          <div class="fadestrip" ></div>
+          <button type="button" class="button" onclick="document.querySelector('.minionmobile').classList.remove('minionmobile'); document.querySelector('.minionmobile-button').classList.add('is-hidden')">+</button>
+      </div>
+    </div>
+    
 </section>
 <section id="devis">
-	{{ page('/desan/devis').content|raw }}
-	{% if request_ajax() %} {# AJAX CHECK show code only if ajax call #}
-		{{ page('/desan/devis').code|raw }}
+
+	{% include "theme::partials/desan/devis" with [spa] %}
+
+	{% if false %}
+		{{ page('/desan/devis').content|raw }}
+		{% if request_ajax() or not spa %} {# AJAX CHECK show code only if ajax call #}
+			{{ page('/desan/devis').code|raw }}
+		{% endif %}       
 	{% endif %}       
 </section>

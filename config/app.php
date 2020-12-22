@@ -55,12 +55,28 @@ return [
     'debug_blacklist' => [
         '_ENV' => [
             'APP_KEY',
+            'ADMIN_USERNAME',
+            'DB_DATABASE',
+            'DB_HOST',
+            'DB_USERNAME', 
             'DB_PASSWORD',
+            'ADMIN_EMAIL',
+            'ADMIN_PASSWORD',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
         ],
 
         '_SERVER' => [
-            'APP_KEY',
+            'APP_KEY', 
+            'ADMIN_USERNAME',
+            'DB_DATABASE',
+            'DB_HOST',
+            'DB_USERNAME', 
             'DB_PASSWORD',
+            'ADMIN_EMAIL',
+            'ADMIN_PASSWORD',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
         ],
 
         '_POST' => [

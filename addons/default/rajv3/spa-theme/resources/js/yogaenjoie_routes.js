@@ -30,31 +30,7 @@ let routes = [
     {
         path: '*:id',
         component: require('./views/yogaenjoie/ajaxpage').default //caches pages
-    }, 
-      
-//    {
-//        path: '/:id',
-//        component: require('./views/yogaenjoie/ajaxpage').default
-//    }, 
-      
-//   {
-//       path: '/publication:id',
-//       component: require('./views/yogaenjoie/ajaxpage').default
-//   }, 
-//    {
-//        path: '/galeries',
-//        component: require('./views/yogaenjoie/galeries').default
-//    }, 
-//    
-//    {
-//        path: '/publications',
-//        component: require('./views/yogaenjoie/publications').default
-//    }, 
-//    
-//   {
-//       path: '*',
-//       component: require('./views/yogaenjoie/ajaxpage').default
-//   }, 
+    } 
 ];
 
 

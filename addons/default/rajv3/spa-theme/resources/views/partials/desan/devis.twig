@@ -1,18 +1,48 @@
-<div class="hero">
+<div class="hero" id="demande-devis">
 	{% set desanmail =  variable_value('desan', 'email')  %}
 		<div class="hero-head"> </div>
       <div class="container has-text-centered hero-body">
 		{% if auth_check() %}  
-			{% set desanmail =  'r4dj4l@gmail.com'  %}
-			<div class="is-danger notification" onclick="this.classList.add('is-hidden')">In admin mode, mail is sent to : {{desanmail}}</div>
+			{# if admin, override mail with a safe setting for testing #}
+			{% set desanmail =  variable_value('general', 'shadow_email') %}
+			<div class="is-danger notification" onclick="this.classList.add('is-hidden')">In admin mode, mail is sent to : {{desanmail}}<br>Instead of {{variable_value('desan', 'email')}}</div>
 		{% endif %}
+		{# set copy recipients list #}
+		{# set sendcopyto = [['radjal@xxxx.fr','commercialyoann@xxxx.com']] #}
+		{% set sendcopyto = [variable_value('general', 'email')] %} 
+		
+		{# add extra shadow recipient if there is one #}
+		{% if variable_value('desan', 'shadow_email') %}
+			{% set sendcopyto = sendcopyto|merge([variable_value('desan', 'shadow_email')]) %}
+		{% endif %}
+		{% set sendcopyto = [sendcopyto] %}
+		{#dd(sendcopyto)#}
+ 
+
+		{# @todo add service in subject line of mail  #}
+		{% 
+		set subject, 
+		messageView, 
+		successMessage,
+		demandePage
+		=  
+		'Demande de devis par site internet', 
+		'rajv3.theme.spa::email/desan/contact', 
+		'Le message a été envoyé',
+		'/desan/demande-envoye' 
+		%}
+		
 	    
 		<div class="columns">
-			<div class="column"> 
-				{# filler column to leave space for image #}
+			<div class="column in-view in-view-sticky"
+				{# using in-view classto trigger script #}
+				data-in-view-target="#devis-shortcut" 
+				data-in-view-class="animate__backOutLeft"
+				> 
+				{# column is empty but serves as spacer for horizontal mode #}
 			</div>
 			<div class="column">
-				<h1 class="title in-view in-view-sticky">Demandez un devis gratuit</h1>
+				<h4 class="title in-view in-view-sticky" >Demandez un devis gratuit</h4>
 				<p class="has-text-justified-desktop subtitle in-view in-view-sticky">
 					Vous souhaitez obtenir des informations et bénéficier d’un conseil personnalisé ?&nbsp;</p><p>
 					Veuillez compléter le formulaire ci-joint :
@@ -66,33 +96,44 @@
 								'required': true
 							} 
 						})
-							.to(desanmail ) 
-								.bcc('radjal@free.fr')
-								.subject('Demande de devis par site internet')
-								.messageView('rajv3.theme.spa::email/desan/contact') 
-								.successMessage('Le message a été envoyé') 
-								.from('{email}').get 
+						.to(desanmail) 
+							.bcc(sendcopyto)  
+							.subject(subject)
+							.messageView(messageView) 
+							.successMessage(successMessage) 
+							.redirect(demandePage)
+							.from('{email}').get 
 						%}
-						{# valid form options
-						form.
-						.cc('radjal@free.fr')
-						.ajax('false') 
-						.redirect('/') 
+						{# multiple recipients https://stackoverflow.com/questions/26584904/laravel-mailsend-sending-to-multiple-to-or-bcc-addresses 
+							.bcc([
+								['email' => 'radjal@free.fr', 'name' => 'Radja'], 
+								['email' => 'commercialyoann@gmail.com', 'name' => 'Yoann']
+							])   
+						above generates error, below works 
+							.bcc([['radjal@free.fr','commercialyoann@gmail.com']])  
+
+						valid form options
+							form.
+								.cc('radjal@free.fr')
+								.ajax('false') 
+								.redirect('/')   
 						#}
 					{{ form.open({id: 'contactform', name: 'contactform'})|raw }} 
 							
 					<fieldset>
 							
 							<div class="field"> 
-							  <div class="control has-icons-left has-icons-right">
-								{{ form.fields.name.input|raw }}
-								<span class="icon is-small is-left">
-								  <em class="fas fa-user"></em>
-								</span> 
-							  </div>
+								<label for="name" class="is-hidden">{{ form.fields.name.label  }}</label>
+								<div class="control has-icons-left has-icons-right">
+									{{ form.fields.name.input|raw }}
+									<span class="icon is-small is-left">
+									<em class="fas fa-user"></em>
+									</span> 
+								</div>
 							</div>
 							
 							<div class="field"> 
+								<label for="email" class="is-hidden">{{ form.fields.email.label  }}</label>
 							  <div class="control has-icons-left has-icons-right">
 								{{ form.fields.email.input|raw }} 
 								<span class="icon is-small is-left">
@@ -102,6 +143,7 @@
 							</div> 
 
 							<div class="field"> 
+								<label for="phone" class="is-hidden">{{ form.fields.phone.label  }}</label>
 							  <div class="control has-icons-left has-icons-right">
 								{{ form.fields.phone.input|raw }} 
 								<span class="icon is-small is-left">
@@ -112,6 +154,7 @@
 							 
 								 
 							<div class="field"> 
+								<label for="subject" class="is-hidden">{{ form.fields.subject.label  }}</label>
 							  <div class="control">  
 								  <div class="select">  
 								  <!-- {{ request_segment(3) }} -->
@@ -134,15 +177,33 @@
 							</div> 
 							
 							<div class="field"> 
+								<label for="message" class="is-hidden">{{ form.fields.message.label  }}</label>
 							  <div class="control">
 								{{ form.fields.message.input|raw }}  
 							  </div>
 							</div> 
 							
 					</fieldset>
+
+
 					<div class="field">
 					  <div class="control has-text-centered">
-						<button type="submit" class="button is-link">Envoyer</button>
+						<button type="submit" class="button is-link" 
+						 id="devis-button" 
+						onclick="
+						if(document.querySelector('textarea#message').value!==''){
+							animateCSS('#devis-button', 'heartBeat').then((message) => {
+								//console.log('devis cta');
+								this.classList.remove('animate__heartBeat');
+								this.classList.add('is-disabled');
+								this.innerText='...';
+								})
+						}else{
+							//console.log('devis cta / no msg');
+							event.preventDefault();
+							animateCSS('#contactform fieldset', 'shakeX')
+						};">Envoyer</button>
+						{# this.classList.add('animate__animated','animate__heartBeat') #}
 					  </div> 
 					</div>  
 				</div>
@@ -154,3 +215,60 @@
       </div>
       <div class="hero-foot"> </div>
 </div>
+<div id="devis-shortcut" class="button is-dark animate__animated animate__backInDown"> 
+    <a 
+		onclick="javascript:location.replace('#demande-devis');window.history.replaceState(null,'devis',/#/);"
+		alt="Demandez votre devis gratuit sous 48h"
+		class="is-uppercase"
+	>
+		<em class="fa fa-file-signature is-size-4-desktop" aria-hidden="true"></em>
+		Devis gratuit
+	</a>
+	&nbsp;&nbsp;
+	<a class="delete" onclick="this.parentElement.style.display = 'none';"></a>
+</div>
+
+{% if request_ajax() or not spa %} {# AJAX CHECK show code only if ajax call #}
+	<style>
+		#devis .container {  
+			/*
+			background-image: url(/files/images/technical-support-help.png);
+			background-position: bottom left;
+			background-repeat: no-repeat;
+			background-size: contain; 
+			background-position-y: 20px;
+			*/
+			z-index:0;
+		}
+		#devis-shortcut a {
+			line-height: normal;
+		} 
+		#devis-shortcut em {
+			margin-right: 10px;
+		} 
+		#devis .container::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			position: absolute;
+			background-image: url(/files/images/technical-support-help.png);
+			background-position: bottom left;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position-y: 20px;
+			z-index: -1;
+			color: #063f63;
+			filter: drop-shadow(6px 5px 16px #063f63);
+		}
+		#devis .select, #devis .select select{
+			width: 100%;
+		}
+		form#contactform {  
+		}
+		form#contactform:focus-within { 
+			filter: drop-shadow(0px 8px 12px #063f63);
+		}
+	</style>
+{% endif %}       

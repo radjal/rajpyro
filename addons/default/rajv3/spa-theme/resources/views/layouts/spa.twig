@@ -39,30 +39,47 @@
             {#
             {% block content %}{% endblock %}  
             #}
-                  
-            <section class="page-content"> 
+			
+
+            {#<div class="page-content" :class="{ 'is-hidden': menu3d }"> #}
+            <div class="page-content" :class="{ 'active': menu3d }"> 
                     
                     <router-view></router-view> 
                 
-            </section>
-            
-            {% include "theme::partials/footer" %}
-            
-                 
+            </div> 
+			
+            {# 3d menu screen - menu shadows	 #}
+			<div class="shadow one" 
+            {# *********************************************************************************************
+			style="transform: perspective(70vw) rotateY(20deg) scale(0.68) translateY(0vh) translateX(5vw);"
+			********************************************************************************************* #}
+			></div>
+			<div class="shadow two" 
+            {# *********************************************************************************************
+			style="transform: perspective(70vw) rotateY(20deg) scale(0.65) translateY(0vh) translateX(-4vw);"
+			********************************************************************************************* #}
+			></div> 
+
+			{% include "theme::partials/footer" %}
+			
         </div> 
+			 
+
             
         <script>
 
             //globals
-            window.loadingHtml = '<div class="hero"><div class="hero-body"><div class="has-text-centered"><span class="icon is-medium"><i class="fa fa-spinner fa-pulse fa-2x "></i></span></div></div></div>';
+            window.loadingHtml = '<div class="hero"><div class="hero-body is-vcentered"><div class="has-text-centered"><span class="icon is-medium"><i class="fa fa-spinner fa-pulse fa-2x "></i></span></div></div></div>';
 
         </script>
 
 
-{%if false %}
-{{ asset_script("theme::js/utilities/scroll-viewport.js"  ) }} 
-{%endif%}
-        <script>
+		{%if false %}
+			{{ asset_script("theme::js/utilities/scroll-viewport.js"  ) }} 
+		{%endif%}
+
+        
+		<script>
 		
 		// https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
 		window.inView = [];
@@ -144,8 +161,61 @@
 
         *****************************************************************************#} 
 		
-	{{ asset_script("public::js/app.js" ) }}
-		
+        <script> 
+			function delayedScrollUnlock() {
+				setTimeout(menu3dClose , 500);
+			} 
+			function menu3dOpen() { 
+				document.querySelector('.page-content').classList.remove('scroll-unlocked'); 
+			}
+
+			function menu3dClose() {
+				document.querySelector('.page-content').classList.add('scroll-unlocked'); 
+			}
+        </script>
+
+		{#
+		<!-- html2canvas -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>-->
+		<!-- below, SVG support from v5 but generates colision with logic.js -->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-alpha1/html2canvas.svg.min.js"></script> -->
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-alpha1/html2canvas.min.js"></script>-->
+		  #}
+		{# asset_script("theme::js/vendor/html2canvas.min.js" ) #}
+		{# asset_script("theme::js/utilities/screen-capture.js" ) #}
+
+		{{ asset_script("public::js/app.js" ) }} 
+
+				{# tilt.js has to come AFTER vue
+				{{ asset_script("theme::js/vendor/vanilla-tilt.js" ) }} 
+				{{ asset_script("theme::js/utilities/svg-animation.js" ) }} 
+				{{ asset_script("theme::js/utilities/scroll-viewport.js" ) }} 
+				{{ asset_script("theme::js/utilities/helper-randomtext.js" ) }}
+				  #}
+   
+        {# other js  #}		
+		{% if env("APP_ENV") == 'local' %}   		
+				{# tilt.js has to come AFTER vue 
+				#}
+				{{ asset_script("theme::js/vendor/vanilla-tilt.js" ) }} 
+				{{ asset_script("theme::js/utilities/svg-animation.js" ) }} 
+				{{ asset_script("theme::js/utilities/scroll-viewport.js" ) }} 
+				{{ asset_script("theme::js/utilities/helper-randomtext.js" ) }} 
+		{% else %} 
+                {# common scripts #}
+                {# will create files in public/ only if it does not exist	
+				 #}
+
+				{{ asset_add('js/utilities.js', 'theme::js/vendor/vanilla-tilt.js', ['min'] ) }} 
+				{{ asset_add('js/utilities.js', 'theme::js/utilities/svg-animation.js', ['min'] ) }} 
+				{{ asset_add('js/utilities.js', 'theme::js/utilities/scroll-viewport.js', ['min'] ) }} 
+				{{ asset_add('js/utilities.js', 'theme::js/utilities/helper-randomtext.js', ['min'] ) }}    
+
+				{{ asset_script("js/utilities.js") }}
+				
+		{% endif %} 
+
+{# ********************************************************************************************************** 
         <script>
             
 				/**
@@ -262,6 +332,7 @@
 
         </script>
 		 
+********************************************************************************************************** #}
 
         <script src="https://kit.fontawesome.com/cd0bb37c50.js" crossorigin="anonymous"></script>
 
@@ -269,7 +340,7 @@
     <!-- analytics code  -->
     {# GET var needs to be before anchor delimitator  /?notrack=1#/ #}
 	 
-    {% if not auth_check() and not (env("APP_ENV") == 'local') and not get_isset("notrack") %}   
+    {% if not auth_check() and (env("APP_ENV") == 'prod') and not get_isset("notrack") %}   
 			{% set gacode = 'UA-16184633-3' %}
 			<!-- Global site tag (gtag.js) - Google Analytics -->
 			<script async src="https://www.googletagmanager.com/gtag/js?id={{ gacode }}"></script>

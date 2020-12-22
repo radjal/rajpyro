@@ -1,7 +1,11 @@
 <template> 
 		<div>
-		
-			<div class="title-animated">
+
+			<h1 class="title has-text-centered">
+				Portofolio
+			</h1>
+
+			<div class="title-animated is-hidden">
 				
 				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 class="animated" 
@@ -79,7 +83,7 @@
 										<div>
 										<!-- {{ project.name }}
 										<br/> -->
-										<img :src="'/files/projects/' + project.name" :alt="project.name">  
+										<img :src="'/files/projects/' + project.name" :alt="project.name" loading="lazy">  
 										</div>
 						</div>    
 				
@@ -101,7 +105,7 @@
 			'contact-form': ContactForm
 		},
 		data(){
-			return {
+			return { 
 				loadingHtml: window.loadingHtml,
 				projects: []
 			} 
@@ -111,18 +115,41 @@
 			/* caching data */
 			if(typeof(window.projects) !== 'undefined') {
 				this.projects = window.projects;
+				this.$root.menu3d=false;
+				delayedScrollUnlock();
+			//	typeof(window.animSvg) !== 'function' ? false : window.animSvg() ;
+			//	document.querySelector('.title-animated').style.visibility ='visible';
+				return ;
+				//document.querySelector('div.page-content').classList.remove('active'); // 3d menu
 			}
 			  
 			if( this.projects.length == 0 ) {				 
 				axios.get('/plist') 
-				.then(({data}) => window.projects = this.projects = data);
-				
-			}  
+				.then(({data}) => {
+						window.projects = this.projects = data;
+						this.$root.menu3d=false;
+						delayedScrollUnlock();
+						typeof(window.animSvg) !== 'function' ? false : window.animSvg() ;
+						return ;
+						//document.querySelector('div.page-content').classList.remove('active'); // 3d menu
+					}); 
+			} 
 		},
 		
         mounted() {
-           // console.log('projects mounted.');			
-			return typeof(window.animSvg) !== 'function' ? false : window.animSvg() ;
+            console.log('projects mounted.');			
+            //console.log( this.projects.length);			 		 
+			if( this.projects.length > 0 ) { //only if cached
+				document.querySelector('.title-animated').style.visibility ='visible';
+				typeof(window.animSvg) !== 'function' ? false : window.animSvg() ;
+			}
+			//return typeof(window.animSvg) !== 'function' ? false : window.animSvg() ; 
+		}	,
+		
+        updated() {
+            console.log('projects updated.');	
+			document.querySelector('.title-animated').style.visibility ='visible';
+			typeof(window.animSvg) !== 'function' ? false : window.animSvg() ;
         }		
 		
         /*

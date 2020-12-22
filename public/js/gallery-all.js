@@ -1,1 +1,89 @@
-var slideIndex=1;function plusSlides(e){showSlides(slideIndex+=e)}function currentSlide(e){showSlides(slideIndex=e)}function showSlides(e){var l,d=document.getElementsByClassName("mySlides");if(!(d.length<=0)){var s=document.getElementsByClassName("dot");for(e>d.length&&(slideIndex=1),e<1&&(slideIndex=d.length),l=0;l<d.length;l++)d[l].style.display="none";for(l=0;l<s.length;l++)s[l].className=s[l].className.replace(" active","");d[slideIndex-1].style.display="block",s[slideIndex-1].className+=" active"}}var slideBoxIndex=1,slideSelectedModal=!1;function launchSlides(e=1,l="myModal"){openSlidesModal(l),currentBoxSlide(e)}function openSlidesModal(e=slideSelectedModal){slideSelectedModal=e,document.getElementById(e).style.display="block"}function closeSlidesModal(e=slideSelectedModal){document.getElementById(e).style.display="none",slideSelectedModal=!1}function plusBoxSlides(e){showBoxSlides(slideBoxIndex+=e)}function currentBoxSlide(e){showBoxSlides(slideBoxIndex=e)}function showBoxSlides(e){var l,d=document.querySelectorAll("#"+slideSelectedModal+" .myBoxSlides");if(!(d.length<=0)){var s=document.querySelectorAll("#"+slideSelectedModal+" .box-slide"),n=document.querySelectorAll("#"+slideSelectedModal+" .box-caption");for(e>d.length&&(slideBoxIndex=1),e<1&&(slideBoxIndex=d.length),l=0;l<d.length;l++)d[l].style.display="none";for(l=0;l<s.length;l++)s[l].className=s[l].className.replace(" active","");d[slideBoxIndex-1].style.display="block",s[slideBoxIndex-1].className+=" active",n.innerHTML=s[slideBoxIndex-1].alt}}
+/* 
+ * https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
+ */
+ 
+var slideIndex = 1; 
+
+//showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if( slides.length <= 0 ) return;
+  // if(!slides) return;
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+} 
+
+
+/* 
+ * https://www.w3schools.com/howto/howto_js_lightbox.asp
+ */
+ 
+var slideBoxIndex = 1; 
+var slideSelectedModal = false; 
+  
+function launchSlides(n=1, id="myModal") {
+	openSlidesModal(id);
+	currentBoxSlide(n);
+}
+
+function openSlidesModal(id=slideSelectedModal) {
+	slideSelectedModal = id;
+	document.getElementById(id).style.display = "block";
+}
+
+function closeSlidesModal(id=slideSelectedModal) {
+	document.getElementById(id).style.display = "none";
+	slideSelectedModal = false;
+}
+
+function plusBoxSlides(n) {
+  showBoxSlides(slideBoxIndex += n);
+}
+
+function currentBoxSlide(n) {
+  showBoxSlides(slideBoxIndex = n);
+}
+
+function showBoxSlides(n) {
+  var i;
+  var slides = document.querySelectorAll('#'+slideSelectedModal+' .myBoxSlides');
+  //var slides = document.getElementsByClassName("myBoxSlides"); 
+  if( slides.length <= 0 ) return;
+  //if( typeof slides === 'undefined' ) return;
+  var dots = document.querySelectorAll('#'+slideSelectedModal+' .box-slide');
+//  var dots = document.getElementsByClassName("demo");
+  var captionText = document.querySelectorAll('#'+slideSelectedModal+' .box-caption');
+//  var captionText = document.getElementById("box-caption");
+  if (n > slides.length) {slideBoxIndex = 1}
+  if (n < 1) {slideBoxIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideBoxIndex-1].style.display = "block";
+  dots[slideBoxIndex-1].className += " active";
+  captionText.innerHTML = dots[slideBoxIndex-1].alt;
+}

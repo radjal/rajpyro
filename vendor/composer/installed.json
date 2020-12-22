@@ -3532,7 +3532,8 @@
             "coffee",
             "coffeescript",
             "javascript"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "composer/ca-bundle",
@@ -5394,12 +5395,12 @@
         "version_normalized": "3.1.1.0",
         "source": {
             "type": "git",
-            "url": "https://gitlab.com/Laravelium/Sitemap.git",
+            "url": "https://github.com/Laravelium/laravel-sitemap.git",
             "reference": "260c4a6473c542f77250d4cd8cb822f3453f2b49"
         },
         "dist": {
             "type": "zip",
-            "url": "https://gitlab.com/api/v4/projects/Laravelium%2FSitemap/repository/archive.zip?sha=260c4a6473c542f77250d4cd8cb822f3453f2b49",
+            "url": "https://api.github.com/repos/Laravelium/laravel-sitemap/zipball/260c4a6473c542f77250d4cd8cb822f3453f2b49",
             "reference": "260c4a6473c542f77250d4cd8cb822f3453f2b49",
             "shasum": ""
         },
@@ -5504,7 +5505,8 @@
             "sass",
             "scss",
             "stylesheet"
-        ]
+        ],
+        "abandoned": "scssphp/scssphp"
     },
     {
         "name": "league/flysystem",
@@ -5742,7 +5744,7 @@
                 "dev-master": "1.1.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Misd\\Linkify\\": "src/Misd/Linkify"
@@ -6406,7 +6408,8 @@
             "lesscss",
             "php",
             "stylesheet"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "paragonie/random_compat",
@@ -7094,7 +7097,8 @@
         "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
         "keywords": [
             "tokenizer"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "phpunit/phpunit",

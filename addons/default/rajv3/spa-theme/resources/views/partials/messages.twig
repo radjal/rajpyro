@@ -1,49 +1,108 @@
 <section id="messages">
-  
-    <!-- Success Messages -->
-    {% if message_exists('success') %}
-        <div class="is-success notification " v-show="showSuccess">
-            <a class="delete" @click="showSuccess = false"></a>
-            
-            {% for message in message_pull('success') %}
-                {{ trans(message)|markdown }}
-            {% endfor %}
-        </div>
-    {% endif %}
 
-    <!-- Informational Messages -->
-    {% if message_exists('info') %}
-        <div class="is-info notification " v-show="showInfo">
-            <a class="delete" @click="showInfo = false"></a>
+{# ********************* set SPA usage or not ********************** #} 
+{% if spa is not defined %}
+    {% set spa = false %} {# SPA or not default #}
+{% endif %}
 
-            {% for message in message_pull('info') %}
-                {{ trans(message)|markdown }}
-            {% endfor %}
-        </div>
-    {% endif %}
+{% if spa %} 
+{# ****************************** SPA ****************************** #} 
+        <!-- Success Messages -->
+        {% if message_exists('success') %}
+            <div class="is-success notification " v-show="showSuccess">
+                <a class="delete" @click="showSuccess = false"></a>
+                
+                {% for message in message_pull('success') %}
+                    {{ trans(message)|markdown }}
+                {% endfor %}
+            </div>
+        {% endif %}
 
+        <!-- Informational Messages -->
+        {% if message_exists('info') %}
+            <div class="is-info notification " v-show="showInfo">
+                <a class="delete" @click="showInfo = false"></a>
 
-    <!-- Warning Messages -->
-    {% if message_exists('warning') %}
-        <div class="is-warning notification " v-show="showWarn">
-            <a class="delete" @click="showWarn = false"></a>
-
-            {% for message in message_pull('warning') %}
-                {{ trans(message)|markdown }}
-            {% endfor %}
-        </div>
-    {% endif %}
+                {% for message in message_pull('info') %}
+                    {{ trans(message)|markdown }}
+                {% endfor %}
+            </div>
+        {% endif %}
 
 
-    <!-- Error Messages -->
-    {% if message_exists('error') %}
-        <div class="is-danger notification " v-show="showError">
-            <a class="delete" @click="showError = false"></a>
+        <!-- Warning Messages -->
+        {% if message_exists('warning') %}
+            <div class="is-warning notification " v-show="showWarn">
+                <a class="delete" @click="showWarn = false"></a>
 
-            {% for message in message_pull('error') %}
-                {{ trans(message)|markdown }}
-            {% endfor %}
-        </div>
-    {% endif %}
+                {% for message in message_pull('warning') %}
+                    {{ trans(message)|markdown }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+        <!-- Error Messages -->
+        {% if message_exists('error') %}
+            <div class="is-danger notification " v-show="showError">
+                <a class="delete" @click="showError = false"></a>
+
+                {% for message in message_pull('error') %}
+                    {{ trans(message)|markdown }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+{% else %}
+{# **************************** not SPA **************************** #} 
+        <!-- Success Messages -->
+        {% if message_exists('success') %}
+            <div class="is-success notification ">
+                <a class="delete" onclick="this.parentElement.style.display = 'none';"></a>
+                
+                {% for message in message_pull('success') %}
+                    {{ trans(message)|markdown }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Informational Messages -->
+        {% if message_exists('info') %}
+            <div class="is-info notification ">
+                <a class="delete" onclick="this.parentElement.style.display = 'none';"></a>
+
+                {% for message in message_pull('info') %}
+                    {{ trans(message)|markdown }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+        <!-- Warning Messages -->
+        {% if message_exists('warning') %}
+            <div class="is-warning notification ">
+                <a class="delete" onclick="this.parentElement.style.display = 'none';"></a>
+
+                {% for message in message_pull('warning') %}
+                    {{ trans(message)|markdown }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+        <!-- Error Messages -->
+        {% if message_exists('error') %}
+            <div class="is-danger notification ">
+                <a class="delete" onclick="this.parentElement.style.display = 'none';"></a>
+
+                {% for message in message_pull('error') %}
+                    {{ trans(message)|markdown }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+
+{% endif %}
 
 </section>
+

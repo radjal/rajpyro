@@ -3,8 +3,16 @@ https://pyrocms.com/forum/channels/themes/unclosed-comment-twig-error-when-inclu
 rules starting with '#' cause a crash with browser output "unclosed comment" 
 */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #fdfdfd;
+}
+
+a {
+  color: #0074bc;
 }
 
 .loadinghtml {
@@ -18,23 +26,40 @@ body {
   margin: auto;
 }
 
+/*below for spa */ 
 a.navbar-item.router-link-exact-active {
   font-style: italic;
-  font-family: 'Montserrat', sans-serif;
-} 
+  font-family: "Montserrat", sans-serif;
+}
 
-blockquote, .title, .subtitle {
+.navbar a.navbar-link.active {
+  background-color: #fdef7c;
+  color:#0074bc;
+  font-weight: bold;
+}
+
+.navbar a.navbar-link:hover {
+  background-color: #717171;
+  color: #fff;
+}
+
+blockquote,
+.title,
+.subtitle {
   /* font-family: 'Francois One', sans-serif; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   /* font-size: medium; */
   /* font-weight: 100; */
   /* font-weight: bold; */
 }
+
 /*      ---------------------------------------  */
 
 nav.navbar {
   background-color: #0074bc;
-  color: #fdef7c;
+  color: #fdef7c; 
+  -webkit-box-shadow: 0 8px 16px rgba(10,10,10,.1);
+  box-shadow: 0 8px 16px rgba(10,10,10,.1);
 }
 
 .navbar-brand nav.navbar a {
@@ -45,8 +70,8 @@ nav.navbar {
 .is-fixed-top .navbar-brand a,
 .is-fixed-top .navbar-brand a:hover {
   color: #fdef7c;
-  font-weight: bold;
-  background: transparent;
+  font-weight: bold; 
+  background: #0074bc;
 }
 
 a.is-active.navbar-item.router-link-exact-active {
@@ -54,7 +79,7 @@ a.is-active.navbar-item.router-link-exact-active {
 }
 
 .navbar-menu.is-active {
-  background-color: #025d96;
+  background-color: #0074bc;
 }
 
 a.navbar-link {
@@ -88,7 +113,7 @@ a.navbar-link {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ffffff",GradientType=1);
 }
 
-p.title {
+p.title, .page-content .title {
   color: #0074bc;
 }
 
@@ -101,10 +126,11 @@ footer#footer {
 }
 
 footer a.navbar-link {
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .footer-menu.buttons {
+  -webkit-box-pack: center;
   justify-content: center;
 }
 
@@ -112,7 +138,7 @@ footer .column {
   margin-top: 30px;
 }
 
-footer#footer .icone svg {
+footer#footer svg {
   height: 40px;
   width: 50px;
   vertical-align: middle;
@@ -137,8 +163,13 @@ a.navbar-link.router-link-exact-active.is-active.is-primary {
 
 footer a.navbar-link::after {
   content: none;
-}
+} 
 
+footer .columns {
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+}
 /* -------------- end footer -------------- */
 
 .contact .button {
@@ -186,12 +217,45 @@ section#devis {
 section#devis p.subtitle {
   margin-top: 20px;
 }
+ 
+section#devis .container{ 
+  /* temp fix */
+  /* @todo remove background style tag set elsewhere */
+  /*background: none;*/
 
-section#devis .container {
+}
+/****************************
+section#devis .container::before {
   background-position: bottom left;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: -10px 50px;
+}
+
+#devis .container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(/files/images/technical-support-help.png);
+  filter: grayscale(100%);
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 6px 10px #d2d2cd52);
+}
+****************************/
+div#devis-shortcut {
+  top: 4em;
+  position: fixed;
+  z-index: 29;
+  margin: 1em;
+}
+
+button#devis-button {
+  background-color: #fdef7c;
+  color: #0074bc;
+  font-weight: bold;
 }
 
 /* -------------- end devis page -------------- */
@@ -209,11 +273,15 @@ section#devis .container {
 .hero.galerie,
 .loadinghtml {
   background-color: #fdef7c;
+  /*color: #025d96; */
 }
 
 /* -------------- service pages -------------- */
 
-.ajaxpage section.hero .column svg {
+section#entreprise .column svg, 
+section#artisan .column svg, 
+.ajaxpage .column svg 
+{
   border: 2px solid rgba(255, 0, 0, 0);
   border-radius: 50% 50%;
   transform-box: view-box;
@@ -224,11 +292,18 @@ section#devis .container {
   margin: 5% 0;
 }
 
-.ajaxpage section.hero .hero-head p {
+section#entreprise .hero-head p, 
+section#artisan .hero-head p, 
+section#artisan .title, 
+.ajaxpage .hero-head p 
+{
   color: #0074bc !important;
 }
 
-.ajaxpage section.hero svg path {
+section#entreprise svg path,
+section#artisan svg path,
+.ajaxpage svg path
+{
   fill: #fdef7c;
 }
 
@@ -244,6 +319,20 @@ section#galerie .pictures {
   margin-bottom: 1.5em;
 }
 
+section#keywords, section#travaux {
+  background: #444444;
+  color: #d8d8d8;
+  font-size: small;
+}
+
+section#keywords span {
+  font-weight: bold;
+}
+
+section#artisan blockquote {
+  margin-bottom: 1.5em;
+}
+
 /* -------------- end service pages -------------- */
 
 section#devis .title,
@@ -252,6 +341,22 @@ section#devis a {
   color: #fdef7c;
 }
 
+
+ 
+/* ---------------- artisan page ---------------- */
+.tile svg {
+  width: 120px; 
+  height:120px;
+    
+} 
+.tile svg path { 
+  fill: #0074bc !important;
+} 
+
+.tile h2 {
+  height: 2em;
+}
+/* -------------- end artisan page -------------- */
 /* -------------- scrollbar ----------------- */
 
 /* width */
@@ -281,7 +386,6 @@ section#devis a {
 
 /*end scrollbar*/
 
-
 /* scroll animation classes */
 
 .in-view:not(.in-view-active) {
@@ -298,7 +402,6 @@ section#devis a {
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
-
 
 /* ------------- eula box --------------- */
 
@@ -336,22 +439,26 @@ section#devis .icone svg {
 }
 
 @media screen and (max-width: 769px) {
-  section#devis .container {
+  /*section#devis .container::before {
     background-size: 200px;
-    background-position: 20px 650px;
-    padding-bottom: 115px;
-    /* background-attachment: fixed; */
+    background-position: 20px 690px;
+    padding-bottom: 120px; 
+  }*/
+  section#devis .container::after {
+    background-size: 200px;
+    background-position: 20px 690px;
+    padding-bottom: 120px; 
   }
 }
 
 @media screen and (max-width: 472px) {
-  section#devis .container {
-    background-size: contain;
+  section#devis .container::after {
     background-position: bottom;
-    background-size: 200px;
-    background-position: 0px 680px;
-    padding-bottom: 100px;
-    background-attachment: initial;
+    background-position: 0px 755px; 
   }
+  /*section#devis .container::before {
+    background-position: bottom;
+    background-position: 0px 755px; 
+  }*/
 }
 

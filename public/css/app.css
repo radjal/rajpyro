@@ -1,1 +1,516 @@
-.tile-xs{-webkit-box-flex:0;flex:none;min-height:214px}.navbar.is-dark .navbar-end .navbar-link.is-active{background-color:transparent;color:#fff;font-weight:700}a.is-active.navbar-item.router-link-exact-active{background-color:transparent!important}a.navbar-link{color:#fff}.navbar-menu.is-active{background-color:#363636}.navbar-menu.is-active:before{content:"";top:-42px;width:100%;height:100px;background:#363636;z-index:-1;position:fixed}.title-animated{margin:auto;padding:2rem}#footer{padding:5rem}.contact .button{margin-top:2rem}#messages{position:fixed;display:block;width:100%;z-index:1111111}#messages .notification{margin:0}.selfie-vector svg{max-width:540px;max-height:530px;width:20%;height:20%}.page-content{overflow:hidden}@media screen and (min-width:376px){.tile-xs{-webkit-box-flex:0;-ms-flex:none;width:50%;float:left;min-height:165px}}@media screen and (min-width:472px){.tile-xs{min-height:237px}.footer-menu{max-width:120px;margin:auto}.title-animated{max-width:50%}}@media screen and (min-width:769px){.tile-xs{min-height:196px}.contact-form{max-width:50%;margin:auto;min-height:300px}}@media screen and (min-width:1024px){.navbar-menu{background-color:transparent}}
+/* *********************************************** 3d menu */
+
+/* ********************************************** menu 3d css */
+
+html,
+body {
+  /*overflow: hidden;*/
+}
+
+html {
+  background: linear-gradient(45deg, #404040, #7a7a7a);
+}
+
+/* fix */
+
+html.has-navbar-fixed-top {
+  padding-top: 0;
+}
+
+html.has-navbar-fixed-top .page-content div {
+  margin-top: 3em;
+}
+
+/*menu open */
+
+.navbar-menu.is-active:before {
+  background: #363636;
+}
+
+/* menu closed */
+
+nav.navbar.is-fixed-top.is-dark {
+  background: #38383e;
+}
+
+/* remove backg from brand link (home) */
+
+#app nav .navbar-brand .navbar-item {
+  background: transparent;
+}
+
+/* fix for menu top background */
+
+.navbar-brand:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 3.25rem;
+  background: #38383e;
+  z-index: -1;
+}
+
+header#header {
+  /* for generic template */
+  /* display: none; */
+  position: fixed;
+  width: 100%;
+  z-index: 100000;
+}
+
+nav.navbar.is-fixed-top.is-dark {
+  background: transparent;
+}
+
+.navbar-menu.is-active {
+  background-color: #3636364a;
+}
+
+/* visual content body */
+
+.page-content {
+  height: 100vh;
+  overflow: hidden;
+  -webkit-animation: menu-animation-out 0.5s ease;
+          animation: menu-animation-out 0.5s ease;
+  background: white;
+}
+
+.page-content.active {
+  /* display: block;   */
+  -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+          transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+  /* */
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  /* animation: menu-animation-in 0.5s ease forwards;  */
+}
+
+@-webkit-keyframes menu-animation-in {
+  from {
+    -webkit-transform: perspective(0vw) rotateY(0deg) scale(1) translateZ(0vw);
+            transform: perspective(0vw) rotateY(0deg) scale(1) translateZ(0vw);
+  }
+
+  to {
+    -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+            transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+  }
+}
+
+@keyframes menu-animation-in {
+  from {
+    -webkit-transform: perspective(0vw) rotateY(0deg) scale(1) translateZ(0vw);
+            transform: perspective(0vw) rotateY(0deg) scale(1) translateZ(0vw);
+  }
+
+  to {
+    -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+            transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+  }
+}
+
+@-webkit-keyframes menu-animation-out {
+  from {
+    -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+            transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+  }
+
+  to {
+    -webkit-transform: perspective(0vw) rotateY(0deg) scale(1) translateZ(0vw);
+            transform: perspective(0vw) rotateY(0deg) scale(1) translateZ(0vw);
+  }
+}
+
+@keyframes menu-animation-out {
+  from {
+    -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+            transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);
+  }
+
+  to {
+    -webkit-transform: perspective(0vw) rotateY(0deg) scale(1) translateZ(0vw);
+            transform: perspective(0vw) rotateY(0deg) scale(1) translateZ(0vw);
+  }
+}
+
+/* declare AFTER .page-content */
+
+/* for div.page-content */
+
+.scroll-locked {
+  overflow: hidden;
+}
+
+.scroll-unlocked {
+  height: initial;
+  overflow: initial;
+}
+
+/* mobile mode menu links appear effect */
+
+/* fix */
+
+.navbar-end {
+  overflow: hidden;
+}
+
+.navbar-menu.is-active a.navbar-link {
+  opacity: 0;
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
+  -webkit-animation: links-appear 0.5s forwards ease var(--i);
+          animation: links-appear 0.5s forwards ease var(--i);
+}
+
+@-webkit-keyframes links-appear {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes links-appear {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+/*  shadow effect when menu is open, */
+
+.page-content.active + .shadow,
+.page-content.active + .shadow + .shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  -webkit-transition: 0.55s;
+  transition: 0.55s;
+  z-index: -1;
+}
+
+/*
+.page-content.active+.shadow,.page-content.active+.shadow+.shadow {
+    transform: perspective(70vw) rotateY(20deg) scale(0.2) translateY(0vh) translateX(5vw); 
+}*/
+
+.page-content.active + .shadow.one {
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.68) translateY(0vh) translateX(5vw);
+          transform: perspective(70vw) rotateY(20deg) scale(0.68) translateY(0vh) translateX(5vw);
+  /*   transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);     
+     height: 100vh;
+     width: 100%;
+     position: absolute;
+     top: 0;
+     left: 0; */
+}
+
+.page-content.active + .shadow.one + .shadow.two {
+  z-index: -2;
+  background: rgba(160, 160, 160, 0.8);
+  -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.65) translateY(0vh) translateX(-4vw);
+          transform: perspective(70vw) rotateY(20deg) scale(0.65) translateY(0vh) translateX(-4vw);
+  /*    transform: perspective(70vw) rotateY(20deg) scale(0.5) translateZ(20vw);  */
+}
+
+/* hover effect on page content div when menu is open */
+
+.page-content.active:hover {
+  -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.55) translateZ(20vw) translateY(0px) !important;
+          transform: perspective(70vw) rotateY(20deg) scale(0.55) translateZ(20vw) translateY(0px) !important;
+}
+
+.page-content.active:hover + .shadow.one {
+  -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.715) translateY(0vh) translateX(5vw);
+          transform: perspective(70vw) rotateY(20deg) scale(0.715) translateY(0vh) translateX(5vw);
+}
+
+.page-content.active:hover + .shadow.one + .shadow.two {
+  -webkit-transform: perspective(70vw) rotateY(20deg) scale(0.66) translateY(0vh) translateX(-4vw);
+          transform: perspective(70vw) rotateY(20deg) scale(0.66) translateY(0vh) translateX(-4vw);
+}
+
+/*  .page-content, */
+
+/*
+.shadow {
+position: absolute;
+width:100%;
+height:100vh;
+top:0;
+left:0;
+background-color:white;
+transform-style: preserve-3d; 
+transform-origin: left;
+opacity: 0.15;
+}
+.shadow.one {
+z-index: -1;
+background-color:lightgray;
+}
+.shadow.two {
+display: none;
+z-index: -2;
+background-color:purple;
+}
+*/
+
+/* *********************************************** end 3d menu */
+
+.page-content {
+  /*  overflow: hidden; */
+  background-color: white;
+  /*padding-bottom: 5rem; */
+  min-height: 70vh;
+}
+
+.tile-xs {
+  -webkit-box-flex: 0;
+  flex: none;
+  min-height: 214px;
+}
+
+.title-animated {
+  margin: auto;
+  padding: 2rem;
+  visibility: hidden;
+}
+
+h1 {
+  font-family: "Geo";
+}
+
+/*fixes*/
+
+#app a.navbar-link:hover {
+  background: #29292970;
+  color: white;
+}
+
+.navbar-menu.is-active a.navbar-link {
+  -webkit-text-fill-color: white;
+}
+
+.outlined {
+  -webkit-text-stroke: 1px black;
+  /* -webkit-text-fill-color: #ffdd57; */
+  -webkit-text-fill-color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  font-size: larger;
+}
+
+/* ********************************** menu */
+
+.navbar.is-dark .navbar-end .navbar-link.is-active {
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+}
+
+a.is-active.navbar-item.router-link-exact-active {
+  background-color: transparent !important;
+}
+
+a.navbar-link {
+  color: white;
+  text-align: right;
+}
+
+.navbar-menu.is-active {
+  /* background-color: #363636;*/
+}
+
+.navbar-menu.is-active:before {
+  content: "";
+  top: -42px;
+  width: 100%;
+  height: 100px;
+  background: #363636;
+  z-index: -1;
+  position: fixed;
+}
+
+/* menu end */
+
+/* ********************************** gradient text for brand name, uses homepage animation */
+
+/* gradient on */
+
+#app nav .navbar-brand .navbar-item,
+.center-title,
+.home-bottom,
+.home-bottom svg,
+a.navbar-link:after,
+a.navbar-link {
+  background: -webkit-linear-gradient(#eee, #00b9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-animation: changebackground 10s linear infinite;
+          animation: changebackground 10s linear infinite;
+  /* font-weight: bold; */
+  /* font-size: 1.5em; */
+}
+
+a.navbar-burger span {
+  background: -webkit-linear-gradient(#eee, #00b9ff);
+  -webkit-animation: changebackground 10s linear infinite;
+          animation: changebackground 10s linear infinite;
+}
+
+/* if home gradient off 
+html.is-home #app a.navbar-item.is-active {
+    background: white;
+    color: white;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    animation: none;
+}*/
+
+/* brand name styling */
+
+a.navbar-item {
+  font-family: "Geo", sans-serif;
+  font-size: 2em;
+  align-self: flex-end;
+  line-height: 1em;
+}
+
+/* ********************************** footer */
+
+#footer {
+  padding: 5rem;
+  background: #38383e;
+}
+
+/* footer menu */
+
+a.button.menu-label {
+  background: #363636;
+  color: #d2d2d2;
+  border-color: #595959;
+}
+
+a.button.menu-label:hover,
+a.button.menu-label:focus {
+  color: #ffffff;
+  border-color: #595959;
+}
+
+a.button.menu-label.is-active {
+  color: #ffffff;
+  border-color: #2d2d2f;
+}
+
+/* footer end */
+
+#messages {
+  position: fixed;
+  display: block;
+  width: 100%;
+  z-index: 1111111;
+}
+
+#messages .notification {
+  margin: 0;
+}
+
+.contact-form {
+  padding-bottom: 5em;
+}
+
+/* responsive overrides */
+
+@media screen and (min-width: 376px) {
+  .tile-xs {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    width: 50%;
+    float: left;
+    min-height: 165px;
+  }
+}
+
+@media screen and (min-width: 472px) {
+  .tile-xs {
+    min-height: 237px;
+  }
+
+  .footer-menu {
+    max-width: 120px;
+    margin: auto;
+  }
+
+  .title-animated {
+    max-width: 50%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .tile-xs {
+    min-height: 196px;
+  }
+
+  .contact-form {
+    max-width: 50%;
+    margin: auto;
+    min-height: 300px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar-menu {
+    background-color: transparent;
+  }
+}
+
+/* -------------- scrollbar ----------------- */
+
+/* width */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/*end scrollbar*/
+

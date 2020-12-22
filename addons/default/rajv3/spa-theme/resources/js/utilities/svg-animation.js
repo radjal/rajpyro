@@ -13,23 +13,21 @@
 					 *   */
 					'use strict';
 						
-						if(typeof container == 'undefined') container = '';
+					if(typeof container == 'undefined') container = '';
 						
 						
-						function reset() {
-                                                    
-							var svgsHidden = Array.prototype.slice.call( document.querySelectorAll( container+ ' svg.animated.is-hidden' ) );
+					function reset() { 	
+						var svgsHidden = Array.prototype.slice.call( document.querySelectorAll( container+ ' svg.animated.is-hidden' ) );
 						svgsHidden.forEach( function( el, i ) { 
 							el.setAttribute( 'class', el.getAttribute('class').replace('is-hidden', '') );
-						} );
-							var wasHidden = Array.prototype.slice.call( document.querySelectorAll(container+  ' .anim-was-hidden' ) );
+						});
+						var wasHidden = Array.prototype.slice.call( document.querySelectorAll(container+  ' .anim-was-hidden' ) );
 						wasHidden.forEach( function( el, i ) { 
 							el.setAttribute( 'class', el.getAttribute('class').replace('anim-was-hidden', 'is-hidden') );
-						} ); 
-                                                    /**/
-						}
+						});  
+					}
 						
-						reset(); // in case not first time
+					reset(); // in case not first time
 						
 						
 						
@@ -92,12 +90,13 @@
 					}
 
 					function showOnPage() {
+						/* @todo FIX below, class substitution creates race condition for .is-hidden, .anim-was-hidden is incorrectly attributed */
 						svgs.forEach( function( el, i ) {
 							el.setAttribute( 'class', el.getAttribute('class') + ' is-hidden' );
-						} );
+						});
 						hidden.forEach( function( el, i ) { 
 							el.setAttribute( 'class', el.getAttribute('class').replace('is-hidden', 'anim-was-hidden') );
-						} );
+						});
 					}
 				  
 						function run() {

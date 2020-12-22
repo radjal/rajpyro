@@ -15,6 +15,7 @@
 
 		C. upload edited HTML index.html to hosting server 
 		D. check that all works well, especially AJAX with CORS
+		E. Check tags of page, <head>, <body>, <html>
     -->  
     {% if auth_check() %} 
     <!-- yogaenjoie layout 
@@ -261,14 +262,13 @@
 						function reset() {
                                                     
 							var svgsHidden = Array.prototype.slice.call( document.querySelectorAll( container+ ' svg.animated.is-hidden' ) );
-						svgsHidden.forEach( function( el, i ) { 
-							el.setAttribute( 'class', el.getAttribute('class').replace('is-hidden', '') );
-						} );
-							var wasHidden = Array.prototype.slice.call( document.querySelectorAll(container+  ' .anim-was-hidden' ) );
-						wasHidden.forEach( function( el, i ) { 
-							el.setAttribute( 'class', el.getAttribute('class').replace('anim-was-hidden', 'is-hidden') );
-						} ); 
-                                                    /**/
+							svgsHidden.forEach( function( el, i ) { 
+								el.setAttribute( 'class', el.getAttribute('class').replace('is-hidden', '') );
+							} );
+								var wasHidden = Array.prototype.slice.call( document.querySelectorAll(container+  ' .anim-was-hidden' ) );
+							wasHidden.forEach( function( el, i ) { 
+								el.setAttribute( 'class', el.getAttribute('class').replace('anim-was-hidden', 'is-hidden') );
+							} );  
 						}
 						
 						reset(); // in case not first time
@@ -374,9 +374,9 @@
 	{% set gacode = 'UA-16184633-2' %}
 			<!-- Global site tag (gtag.js) - Google Analytics -->
 			<script>
-		/* production code
+		/* ******************** production code ********************
 				{#  emulate server side disabling of tracking, as this document is on a static server #} 
-				if(window.location.search.toLowerCase().substr(1).search('notrack'))
+				if(window.location.search.toLowerCase().substr(1).search('notrack') < 0)
 				{ 
 					const script = document.createElement('script');
 					script.src = 'https://www.googletagmanager.com/gtag/js?id={{ gacode }}';  
@@ -389,7 +389,7 @@
 					gtag('config', '{{ gacode }}');
 
 				} else {console.log('no tracking')}
-		end production code */
+		******************** end production code ******************** */
 			</script>
 
 {% endif %}
