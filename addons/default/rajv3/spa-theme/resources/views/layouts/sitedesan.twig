@@ -12,9 +12,9 @@
     {% if not spa %} 
         {# ********************* build desan path, uses page N°123 ***************** #}  
         {% set path = request_path()|split('/')|slice(1)|join('/') %}  
-        {% if path|split('/')[0] == 'travaux' %} {# alternative segment #}
+        {% if path|split('/')[0] == 'service' %} {# alternative segment #}
                 {# ************** NOT USED FOR NOW, needs improving ************** #} 
-                {% set path = "desan/service/" ~ path|split('/')|slice(1)|join('/') %} 
+                {% set path = "desan/travaux/" ~ path|split('/')|slice(1)|join('/') %} 
                 {{dump(path)}}
         {% elseif path == 'yogaenjoie' %} {# keep out other sites #} 
            {{dd('yogaenjoie')}}
